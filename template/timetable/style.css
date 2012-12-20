@@ -1,0 +1,36 @@
+body{
+    margin: 0;
+}
+#timetable{
+    text-align: center;
+    color: blue;
+}
+table{
+    margin:auto;
+    width:1200px;
+    height: 500px;
+    border: 1px;
+    
+}
+td{
+    width: 120px;
+    text-align: center;
+}
+img{
+    float:left;
+    margin-top: -100px;
+    margin-left: 80px;
+}
+h4{
+    float: right;
+    margin-top: -70px;
+    position: relative ;
+    left: -90px;
+    text-align: left;
+}
+.cours{
+    text-align: right;
+}
+.room{
+    text-align: right;
+}
