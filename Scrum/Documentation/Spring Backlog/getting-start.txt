@@ -1,0 +1,37 @@
+Extract ZendSkeleton to your www location 
+
+create new virtual host in apache -> httpd.conf
+
+<VirtualHost *:80>
+    ServerName zf2-tutorial.localhost
+    DocumentRoot /path/to/zf2-tutorial/public
+    SetEnv APPLICATION_ENV "development"
+    <Directory /path/to/zf2-tutorial/public>
+        DirectoryIndex index.php
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>
+
+
+add new name in
+C:\Windows\System32\drivers\etc\hosts
+(ex: 127.0.0.1	gic.bookingsystem.com)
+
+
+
+go to Zend Framwork Forlder and run 2 commands (to fix dependencies)
+
+php composer.phar self update
+php composer.phar install
+
+
+##########
+neo bidam
+2012-ITC
+##########
+
+
+
+
