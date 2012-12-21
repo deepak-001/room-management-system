@@ -1,47 +1,47 @@
 var Lundi={
-    1:{"subject":"Prlogo","teacher":"Heng Sotharith","room":"206F"},
-    2:{"subject":"Prlogo","teacher":"Heng Sotharith","room":"206F"},
-    3:{"subject":"English","teacher":"","room":""},
-    4:{"subject":"English","teacher":"","room":""},
-    5:{"subject":"Multimedia","teacher":"Kong PhutPhall","room":"260F"},
-    6:{"subject":"Multimedia","teacher":"Kong PhutPhall","room":"260F"},
-    7:{"subject":"Traitement de Parole","teacher":"SAM Sethserey","room":"260F"},
-    8:{"subject":"Traitement de Parole","teacher":"SAM Sethserey","room":"260F"},
+    1:{"subject":"Prlogo","teacher":"Heng Sotharith","room":"206F","group":""},
+    2:{"subject":"Prlogo","teacher":"Heng Sotharith","room":"206F","group":""},
+    3:{"subject":"English","teacher":"","room":"","group":""},
+    4:{"subject":"English","teacher":"","room":"","group":""},
+    5:{"subject":"Multimedia","teacher":"Kong PhutPhall","room":"260F","group":""},
+    6:{"subject":"Multimedia","teacher":"Kong PhutPhall","room":"260F","group":""},
+    7:{"subject":"Traitement de Parole","teacher":"SAM Sethserey","room":"260F","group":""},
+    8:{"subject":"Traitement de Parole","teacher":"SAM Sethserey","room":"260F","group":""},
 };
 var Mardi =  {
     1:"",
     2:"",
-    3:{"subject":"Traitement de parole","teacher":"SENG Sopheap","room":"206F"},
-    4:{"subject":"Traitement de parole","teacher":"SENG Sopheap","room":"206F"},
-    5:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F"},
-    6:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F"},
-    7:{"subject":"Système Distribué","teacher":"Long Seangmeng","room":"206F"},
-    8:{"subject":"Système Distribué","teacher":"Long Seangmeng","room":"206F"},
+    3:{"subject":"Traitement de parole","teacher":"SENG Sopheap","room":"206F","group":""},
+    4:{"subject":"Traitement de parole","teacher":"SENG Sopheap","room":"206F","group":""},
+    5:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F","group":""},
+    6:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F","group":""},
+    7:{"subject":"Système Distribué","teacher":"Long Seangmeng","room":"206F","group":""},
+    8:{"subject":"Système Distribué","teacher":"Long Seangmeng","room":"206F","group":""},
 };
 var Mercredi = {
-    1:{"subject":"Intelligence Articielle","teacher":"TOUCH Sereysethy","room":"206F"},
-    2:{"subject":"Intelligence Articielle","teacher":"TOUCH Sereysethy","room":"206F"},
-    3:"Séminaire",
-    4:"Séminaire",
+    1:{"subject":"Intelligence Articielle","teacher":"TOUCH Sereysethy","room":"206F","group":""},
+    2:{"subject":"Intelligence Articielle","teacher":"TOUCH Sereysethy","room":"206F","group":""},
+    3:{"subject":"Séminaire", "teacher":"", "room":"","group":""},
+    4:{"subject":"Séminaire", "teacher":"", "room":"","group":""},
     5:"",
     6:"",
     7:"",
     8:""};
 var Jeudi =  {
-    1:{"subject":"Traitement d'Image","teacher":"Kong PhutPhalla","room":"206F"},
-    2:{"subject":"Traitement d'Image","teacher":"Kong PhutPhalla","room":"206F"},
-    3:{"subject":"Systéme Distribué","teacher":"Long seangmeng","room":"206F"},
-    4:{"subject":"Systéme Distribué","teacher":"Long seangmeng","room":"206F"},
-    5:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F"},
-    6:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F"},
-    7:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F"},
-    8:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F"},
+    1:{"subject":"Traitement d'Image","teacher":"Kong PhutPhalla","room":"206F","group":""},
+    2:{"subject":"Traitement d'Image","teacher":"Kong PhutPhalla","room":"206F","group":""},
+    3:{"subject":"Systéme Distribué","teacher":"Long seangmeng","room":"206F","group":""},
+    4:{"subject":"Systéme Distribué","teacher":"Long seangmeng","room":"206F","group":""},
+    5:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F","group":"A"},
+    6:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F","group":"A"},
+    7:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F","group":"B"},
+    8:{"subject":"Admin. Réseaux","teacher":"JEOG Chul","room":"306F","group":"B"},
 };
 var Vendredi = {
-    1:{"subject":"Pro. Fontionnelle","teacher":"HENG Sotharith","room":"306F"},
-    2:{"subject":"Pro. Fontionnelle","teacher":"HENG Sotharith","room":"306F"},
-    3:{"subject":"Francaise","teacher":"JEOG Chul","room":""},
-    4:{"subject":"Francaise","teacher":"JEOG Chul","room":""},
+    1:{"subject":"Pro. Fontionnelle","teacher":"HENG Sotharith","room":"306F","group":""},
+    2:{"subject":"Pro. Fontionnelle","teacher":"HENG Sotharith","room":"306F","group":""},
+    3:{"subject":"Francaise","teacher":"JEOG Chul","room":"302-E","group":""},
+    4:{"subject":"Francaise","teacher":"JEOG Chul","room":"302-E","group":""},
     5:"",
     6:"",
     7:"",
@@ -51,6 +51,11 @@ var Vendredi = {
 var jsonWeek = {"lundi":Lundi,"mardi":Mardi,"mercredi":Mercredi,"jeudi":Jeudi,"vendredi":Vendredi};
 
 
-var semestre = {"Group":"I5","Semistre":{"startDate":23342223,"endDate":2323432},"week":jsonWeek};
+var semestre = {"Group":"I5","Semistre":{"number":"I","startDate":1342026000000,"endDate":1372784400000},"week":jsonWeek};
 
 console.log(semestre);
+
+var d1 = new Date("7/12/2012").getTime();
+var d2 = new Date("7/3/2013").getTime();
+console.log(d1 + " , " + d2 );
+console.log(d2-d1);
