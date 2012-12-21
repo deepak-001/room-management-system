@@ -1,0 +1,57 @@
+var Lundi={
+    1:{"subject":"Arch.Ordinateur","teacher":"SOK kimheng","room":"204F"},
+    2:{"subject":"Arch.Ordinateur","teacher":"SOK Kimheng","room":"204F"},
+    3:{"subject":"IS et Réseaux","teacher":"E-learning","room":"210F"},
+    4:{"subject":"IS et Réseaux","teacher":"E-Learning","room":"210F"},
+    5:{"subject":"Electronique","teacher":"GEE","room":"104F"},
+    6:{"subject":"Electronique","teacher":"GEE","room":"104F"},
+    7:{"subject":"Francaise","teacher":"","room":""},
+    8:{"subject":"Francaise","teacher":"","room":""},
+};
+var Mardi =  {
+    1:{"subject":"IS et Réseaux","teacher":"H.Samboeun","room":"309F"},
+    2:{"subject":"IS et Réseaux","teacher":"H.Samboeun","room":"309F"},
+    3:{"subject":"Anglais","teacher":"","room":"309F"},
+    4:{"subject":"Anglais","teacher":"","room":"309F"},
+    5:{"subject":"Logique","teacher":"K.Soreangsey","room":"309F"},
+    6:{"subject":"Logique","teacher":"K.Soreangsey","room":"309F"},
+    7:{"subject":"Francaise","teacher":"","room":""},
+    8:{"subject":"Francaise","teacher":"","room":""},
+};
+var Mercredi = {
+    1:"",
+    2:"",
+    3:{"subject":"Algo et Prog","teacher":"VaLY Dona","room":"103F"},
+    4:{"subject":"Algo et Prog","teacher":"VaLY Dona","room":"103F"},
+    5:"",
+    6:{"subject":"ASCI","teacher":"CHHOU Vanna","room":"205F"},
+    7:{"subject":"ASCI","teacher":"CHHOU Vanna","room":"205F"},
+    8:{"subject":"ASCI","teacher":"CHHOU Vanna","room":"205F"}
+};
+var Jeudi =  {
+    1:{"subject":"Algo et Prog","teacher":"VaLY Dona","room":"209F"},
+    2:{"subject":"Algo et Prog","teacher":"VaLY Dona","room":"209F"},
+    3:{"subject":"Algo et Prog","teacher":"VaLY Dona","room":"209F"},
+    4:{"subject":"Algo et Prog","teacher":"VaLY Dona","room":"209F"},
+    5:{"subject":"Statistiques","teacher":"SIM Tepmony","room":"301F"},
+    6:{"subject":"Logique","teacher":"KIV Soreangsey","room":"104F"},
+    7:{"subject":"Logique","teacher":"KIV Soreangsey","room":"104F"},
+    8:"",
+};
+var Vendredi = {
+    1:{"subject":"Algo","teacher":"VALY Dona","room":"104F"},
+    2:{"subject":"Algo","teacher":"VALY Dona","room":"104F"},
+    3:{"subject":"Projet et Informatique","teacher":"","room":"209F"},
+    4:{"subject":"Projet et Informatique","teacher":"","room":"209F"},
+    5:{"subject":"Statistiques","teacher":"SIM Tepmony","room":"209F"},
+    6:{"subject":"Statistiques","teacher":"SIM Tepmony","room":"209F"},
+    7:{"subject":"Math Discrète","teacher":"HAM Karim","room":"301F"},
+    8:{"subject":"Math Discrète","teacher":"HAM Karim","room":"301F"},
+};
+
+var jsonWeek = {"lundi":Lundi,"mardi":Mardi,"mercredi":Mercredi,"jeudi":Jeudi,"vendredi":Vendredi};
+
+
+var semestre = {"Group":"I3","Semistre":{"startDate":23342223,"endDate":2323432},"week":jsonWeek};
+
+console.log(semestre);

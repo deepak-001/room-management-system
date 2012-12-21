@@ -1,0 +1,56 @@
+var Lundi={
+    1:{"subject":"Pro.Internet","teacher":"Kiv.Soreangsey","room":"306F"},
+    2:{"subject":"Pro.Internet","teacher":"Kiv.Soreangsey","room":"306F"},
+    3:{"subject":"Génie Logiciel","teacher":"Long Seangmeng ","room":"306F"},
+    4:"",
+    5:{"subject":"Réseaux","teacher":"Hean Samboeun","room":"104F"},
+    6:{"subject":"Réseaux","teacher":"Hean Samboeun","room":"104F"},
+    7:{"subject":"Génie Logiciel","teacher":"E-learning","room":"209F"},
+    8:{"subject":"Génie Logiciel","teacher":"E-learning","room":"209F"},
+};
+var Mardi =  {
+    1:"",
+    2:"",
+    3:{"subject":"Réseaux","teacher":"H.Samboeun","room":"309F"},
+    4:{"subject":"Réseaux","teacher":"H.Samboeun","room":"309F"},
+    5:{"subject":"Francais","teacher":"","room":""},
+    6:{"subject":"Francais","teacher":"","room":""},
+    7:{"subject":"GL","teacher":"T.Togiciel","room":"309F"},
+    8:{"subject":"GL","teacher":"T.Togiciel","room":"309F"},
+};
+var Mercredi = {
+    1:{"subject":"Langage C/C++","teacher":"Kong PhulPhalla","room":"309F"},
+    2:{"subject":"Langage C/C++","teacher":"Kong PhulPhalla","room":"309F"},
+    3:"Séminaire",
+    4:"Séminaire",
+    5:"",
+    6:"",
+    7:"",
+    8:""};
+var Jeudi =  {
+    1:"",
+    2:"",
+    3:"Anglais",
+    4:"Anglais",
+    5:{"subject":"SE","teacher":"SOK Kimheng","room":"303F"},
+    6:{"subject":"SE","teacher":"SOK Kimheng","room":"302F"},
+    7:{"subject":"GL","teacher":"T.Tongsreng","room":"306F"},
+    8:{"subject":"GL","teacher":"T.Tongsreng","room":"306F"},
+};
+var Vendredi = {
+    1:{"subject":"SE","teacher":"SOK Kimheng","room":"303F"},
+    2:{"subject":"SE","teacher":"SOK Kimheng","room":"303F"},
+    3:{"subject":"SE","teacher":"SOK Kimheng","room":"303F"},
+    4:{"subject":"SE","teacher":"SOK Kimheng","room":"303F"},
+    5:{"subject":"Langage C/C++","teacher":"Kong PhulPhalla","room":"309F"},
+    6:{"subject":"Langage C/C++","teacher":"Kong PhulPhalla","room":"309F"},
+    7:{"subject":"Pro.Internet","teacher":"Kiv.Soreangsey","room":"306F"},
+    8:{"subject":"Pro.Internet","teacher":"Kiv.Soreangsey","room":"306F"},
+};
+
+var jsonWeek = {"lundi":Lundi,"mardi":Mardi,"mercredi":Mercredi,"jeudi":Jeudi,"vendredi":Vendredi};
+
+
+var semestre = {"Group":"I4","Semistre":{"startDate":23342223,"endDate":2323432},"week":jsonWeek};
+
+console.log(semestre);
