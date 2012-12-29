@@ -13,7 +13,7 @@ return array(
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route'    => '/book',
+                    'route'    => '/',
                     'defaults' => array(
                         'controller' => 'Booking\Controller\Index',
                         'action'     => 'index',
@@ -55,6 +55,21 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Booking\Controller\Index' => 'Booking\Controller\IndexController'
+        ),
+    ),
+	'service_manager' => array(
+        'factories' => array(
+            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+        ),
+    ),
+	'translator' => array(
+        'locale' => 'en_US',
+        'translation_file_patterns' => array(
+            array(
+                'type'     => 'gettext',
+                'base_dir' => __DIR__ . '/../language',
+                'pattern'  => '%s.mo',
+            ),
         ),
     ),
     'view_manager' => array(
