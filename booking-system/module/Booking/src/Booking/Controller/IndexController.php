@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -11,11 +12,33 @@ namespace Booking\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Booking\Model\UsersModel;
 
-class IndexController extends AbstractActionController
-{
-    public function indexAction()
-    {
-        return new ViewModel();
+
+class IndexController extends AbstractActionController {
+
+    public function indexAction() {
+        
+        return array(
+            'key' => 'Hello world'
+            
+        );
+//        return new ViewModel(
+//                );
     }
+    public function readJsonAction(){
+        $id =1 ;
+        $name = 'speeder';
+		$array = array('id'=> $id, 'name' => $name);
+        $path ='Booking\Model\UsersTable';
+		$this->getServiceLocator()->get($path)->saveUsers($array);
+		
+        
+//       return array(
+//           'key' => 'readJsonAction'
+//       );
+       
+       }
+    
+
 }

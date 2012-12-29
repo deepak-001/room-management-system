@@ -11,6 +11,11 @@ namespace Booking;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Booking\Model\UsersTable;
+use Zend\Db\ResultSet\ResultSet;
+use Booking\Model\Users;
+use Zend\Db\TableGateway\TableGateway;
+
 
 class Module
 {
@@ -27,6 +32,24 @@ class Module
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
+            ),
+        );
+    }
+	 public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Booking\Model\UsersTable' =>  function($sm) {
+                    $tableGateway = $sm->get('AlbumTableGateway');
+                    $table = new UsersTable($tableGateway);
+                    return $table;
+                },
+                'AlbumTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Users());
+                    return new TableGateway('users', $dbAdapter, null, $resultSetPrototype);
+                },
             ),
         );
     }
