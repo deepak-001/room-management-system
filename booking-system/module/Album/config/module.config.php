@@ -1,19 +1,28 @@
 <?php
+namespace Album;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of modul
- *
- * @author John_Odom
- */
 return array(
     'controllers' => array(
         'invokables' => array(
             'Album\Controller\Album' => 'Album\Controller\AlbumController',
+        ),
+    ),
+    'router' => array(
+        'routes' => array(
+            'album' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/album[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Album\Controller\Album',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
     'view_manager' => array(
@@ -21,10 +30,19 @@ return array(
             'album' => __DIR__ . '/../view',
         ),
     ),
+    // Doctrine config
+    'doctrine' => array(
+        'driver' => array(
+            __NAMESPACE__ . '_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                )
+            )
+        )
+    )
 );
-
-class modul {
-    //put your code here
-}
-
-?>

@@ -1,52 +1,26 @@
-ZendSkeletonApplication
+ZF2 Doctrine Tutorial
 =======================
 
 Introduction
 ------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+This is a learning exercise for me in using Doctrine ORM with Zend Framework 2. It uses Rob Allen's album tutorial and the ZF2 Skeleton as a base, and is built using Jason Grimes's blog post as a heavy inspiration.
 
 
 Installation
 ------------
 
-Using Composer (recommended)
-----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
-
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project --repository-url="http://packages.zendframework.com" zendframework/skeleton-application path/to/install
-
-Alternately, clone the repository and manually invoke `composer` using the shipped
-`composer.phar`:
+To install this project, you should clone it out to your local machine and invoke `composer` using the shipped `composer.phar`:
 
     cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
+    git clone git://github.com/shanethehat/zf2-doctrine-tutorial.git
+    cd zf2-doctrine-tutorial
     php composer.phar self-update
-    php composer.phar install
+    php composer.phar update
 
 (The `self-update` directive is to ensure you have an up-to-date `composer.phar`
 available.)
 
-Another alternative for downloading the project is to grab it via `curl`, and
-then pass it to `tar`:
-
-    cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
-
-You would then invoke `composer` to install dependencies per the previous
-example.
-
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
-
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
 
 Virtual Host
 ------------
-Afterwards, set up a virtual host to point to the public/ directory of the
-project and you should be ready to go!
+Afterwards, set up a virtual host to point to the public/ directory of the project and you should be ready to go!
