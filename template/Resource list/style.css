@@ -1,0 +1,37 @@
+body{
+	margin: auto;
+}
+table{
+	100%;
+	margin: auto;
+	width: 700px;
+	height: 500px;	
+}
+#title{
+	position: relative;
+	left: 0;
+	text-align: center;
+	width: 70%;
+}
+form{
+	position: relative;
+	float: right;
+	width: 30%;
+	margin-top: -50px;
+	margin-right: 250px;
+}
+h1{
+	text-align: center;
+	color: blue;
+}
+tr{
+/*	color: window;*/
+	color: blue;
+}
+td{
+	width: 180px;
+	text-align: center;
+}
+#form_resurce{
+	width: 100%;
+}

@@ -1,0 +1,47 @@
+
+<table cellspacing="1" class="tablesorter">             
+    <thead>
+        <tr> 
+            <th>first name</th> 
+            <th>last name</th> 
+            <th>age</th> 
+            <th>total</th> 
+            <th>discount</th> 
+            <th>date</th> 
+        </tr> 
+    </thead> 
+    <tbody> 
+        <tr> 
+            <td><strong><em>peter</em></strong></td> 
+            <td><strong><em>parker</em></strong></td> 
+            <td><strong><em>28</em></strong></td> 
+            <td><strong><em>$9.99</em></strong></td> 
+            <td><strong><em>20%</em></strong></td> 
+            <td><strong><em>jul 6, 2006 8:14 am</em></strong></td> 
+        </tr> 
+        <tr> 
+            <td><strong><em>john</em></strong></td> 
+            <td><strong><em>hood</em></strong></td> 
+            <td><strong><em>33</em></strong></td> 
+            <td><strong><em>$19.99</em></strong></td> 
+            <td><strong><em>25%</em></strong></td> 
+            <td><strong><em>dec 10, 2002 5:14 am</em></strong></td> 
+        </tr> 
+    </tbody>
+
+</table>
+
+	<script type="text/javascript">
+	$(document).ready(function() { 
+     
+    // call the tablesorter plugin 
+    $("table").tablesorter({ 
+        // define a custom text extraction function 
+        textExtraction: function(node) { 
+            // extract data from markup and return it  
+            return node.childNodes[0].childNodes[0].innerHTML; 
+        } 
+    }); 
+}); 
+	</script>
+</html>
