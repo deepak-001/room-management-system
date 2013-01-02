@@ -4,7 +4,7 @@ namespace Booking\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
-class UsersTable {
+class ResoucesTable {
 
 	protected $tableGateway;
 
@@ -19,9 +19,6 @@ class UsersTable {
 
 	public function saveUsers($data) {
 		$this->tableGateway->insert($data);
-	}
-	public function getUser(){
-		
 	}
 
 }

@@ -1,0 +1,16 @@
+<table class="table">
+<?php foreach ($rooms as $room) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($room->id);?></td>
+    <td><?php echo $this->escapeHtml($room->number);?></td>
+	<td><?php echo $this->escapeHtml($room->idBuilding); ?></td>
+    <td>
+        <a href="">Edit</a>
+        <a href="">Delete</a>
+		<a href="">Add</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
+
+

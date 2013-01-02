@@ -13,6 +13,7 @@ namespace Booking\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Booking\Model\UsersModel;
+use Booking\Model\RoomsTable;
 
 
 class IndexController extends AbstractActionController {
@@ -27,7 +28,7 @@ class IndexController extends AbstractActionController {
 //                );
     }
     public function readJsonAction(){
-        $id =1 ;
+        $id =3 ;
         $name = 'speeder';
 		$array = array('id'=> $id, 'name' => $name);
         $path ='Booking\Model\UsersTable';
@@ -39,6 +40,30 @@ class IndexController extends AbstractActionController {
 //       );
        
        }
+	   
+	   public function showUsersAction(){
+		   $path ='Booking\Model\UsersTable';
+//		   $users = $this->getServiceLocator()->get($path)->fetchAll();
+//		   echo count($users);
+//		   var_dump($users);
+		   return new ViewModel(array(
+            'users' => $this->getServiceLocator()->get($path)->fetchAll(),
+			));
+//		    return array(
+//			   'key' => 'This view action'
+//		   );
+	   }
+	   public function showRoomsAction(){
+		   $path ='Booking\Model\RoomsTable';
+		   return new ViewModel(array(
+            'rooms' => $this->getServiceLocator()->get($path)->fetchAll(),
+			));
+	   }
+	   public function viewAction(){
+		   return array(
+			   'key' => 'This view action'
+		   );
+	   }
     
 
 }

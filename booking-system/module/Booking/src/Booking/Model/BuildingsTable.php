@@ -3,8 +3,10 @@
 namespace Booking\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Sql\Sql;
+use Zend\Db\Sql\Where;
 
-class UsersTable {
+class BuildingsTable {
 
 	protected $tableGateway;
 
@@ -19,9 +21,6 @@ class UsersTable {
 
 	public function saveUsers($data) {
 		$this->tableGateway->insert($data);
-	}
-	public function getUser(){
-		
 	}
 
 }

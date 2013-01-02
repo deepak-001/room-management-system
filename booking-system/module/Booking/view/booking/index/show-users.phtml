@@ -1,0 +1,15 @@
+<table class="table">
+<?php foreach ($users as $user) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($user->id);?></td>
+    <td><?php echo $this->escapeHtml($user->name);?></td>
+	<td><?php echo $this->escapeHtml($user->email); ?></td>
+    <td>
+        <a href="">Edit</a>
+        <a href="">Delete</a>
+		<a href="">Add</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
+

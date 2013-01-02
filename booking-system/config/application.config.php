@@ -1,10 +1,9 @@
 <?php
 return array(
     'modules' => array(
-       // 'Application',
+       'Application',
         //'DoctrineModule',
         //'DoctrineORMModule',
-        //'Album',
 		'Booking'
     ),
     'module_listener_options' => array(

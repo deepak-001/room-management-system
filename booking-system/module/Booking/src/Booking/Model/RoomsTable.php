@@ -3,8 +3,10 @@
 namespace Booking\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Sql\Sql;
+use Zend\Db\Sql\Where;
 
-class UsersTable {
+class RoomsTable  {
 
 	protected $tableGateway;
 
@@ -20,9 +22,22 @@ class UsersTable {
 	public function saveUsers($data) {
 		$this->tableGateway->insert($data);
 	}
-	public function getUser(){
-		
+
+	public function getRooms() {
+
+		$sql = new Sql($this->tableGateway->getAdapter());
+		$select = $sql->select();
+		$select->from($this->table)->join('buildings', 'romms.idBuilding = buildings.id');
+
+		$statement = $sql->prepareStatementForSqlObject($select);
+
+		$result = $statement->execute();
+
+
+
+		return $result;
 	}
 
 }
+
 ?>

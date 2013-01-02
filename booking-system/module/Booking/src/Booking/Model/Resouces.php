@@ -3,7 +3,7 @@
 
 namespace Booking\Model;
 
-class Users
+class Resouces
 {
     public $id;
     public $name;
@@ -14,7 +14,7 @@ class Users
     {
         $this->id     = (isset($data['id'])) ? $data['id'] : null;
         $this->name = (isset($data['name'])) ? $data['name'] : null;
-		$this->dateOfBirth     = (isset($data['dateOfBirth'])) ? $data['dateOfBirth'] : null;
+		$this->$dateOfBirth     = (isset($data['$dateOfBirth'])) ? $data['$dateOfBirth'] : null;
 		$this->email     = (isset($data['email'])) ? $data['email'] : null;
     }
 }
