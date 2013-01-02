@@ -1,80 +1,70 @@
-create table qualities
-(
-    id int(8),
-    `type` varchar(30)
-);
+CREATE TABLE IF NOT EXISTS `qualities` (
+  `id` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `type` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-create table permissions
-(
-    id int(8),
-    name varchar(127)
-);
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `id` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(127) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-create table `user-groups`
-(
-    id int(8),
-    name varchar(50)
-);
+CREATE TABLE IF NOT EXISTS `user-groups` (
+  `id` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-create table users
-(
-    id int(8),
-    name varchar(50),
-    dateOfBirth int(8),
-    email varchar(127),
-    PRIMARY KEY (id)
-);
-create table categories
-(
-id int(8),
-name varchar(50),
-`prefix` varchar(50),
-description varchar(255)
-);
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `dateOfBirth` int(8) DEFAULT NULL,
+  `email` varchar(127) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(50) DEFAULT NULL,
+  `prefix` varchar(50) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-create table resources
-(
-id int(8),
-idCategory int(8)Not Null REFERENCES categories(id) ,
-idQuality int(8)Not Null REFERENCES qualities(id),
-numbers int(8),
-description varchar(255)
-);
+CREATE TABLE IF NOT EXISTS `resources` (
+  `id` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `idCategory` int(8) NOT NULL,
+  `idQuality` int(8) NOT NULL,
+  `numbers` int(8) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-create table `book-resource`
-(
-idUser int(8)REFERENCES users(id),
-idResource int(8)REFERENCES resources(id),
-startTime int(8),
-endTime int(8),
-report varchar(255),
-PRIMARY KEY (idUser,idResource)
-);
+CREATE TABLE IF NOT EXISTS `book-resource` (
+  `idUser` int(8) NOT NULL AUTO_INCREMENT,
+  `idResource` int(8) NOT NULL DEFAULT '0',
+  `startTime` int(8) DEFAULT NULL,
+  `endTime` int(8) DEFAULT NULL,
+  `report` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idUser`,`idResource`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-create table buildings 
-(
-id int(8),
-name varchar(50),
-description varchar(255)
-);
+CREATE TABLE IF NOT EXISTS `buildings` (
+  `id` int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(50) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-create table rooms
-(
-id int(8),
-idBuilding int(8)REFERENCES buildings(id),
-idQuality int(2)REFERENCES qualities(id),
-`number` int(8),
-description varchar(255),
-PRIMARY KEY (id)
-);
+CREATE TABLE IF NOT EXISTS `rooms` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `idBuilding` int(8) DEFAULT NULL,
+  `idQuality` int(2) DEFAULT NULL,
+  `number` int(8) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-create table `book-room`
-(
-idUser int(8)REFERENCES users(id),
-idRoom int(8)REFERENCES rooms(id),
-startTime int(8),
-endTime int(8),
-report varchar(255),
-PRIMARY KEY (idUser,idRoom)
-);
+CREATE TABLE IF NOT EXISTS `book-room` (
+  `idUser` int(8) NOT NULL AUTO_INCREMENT,
+  `idRoom` int(8) NOT NULL DEFAULT '0',
+  `startTime` int(8) DEFAULT NULL,
+  `endTime` int(8) DEFAULT NULL,
+  `report` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idUser`,`idRoom`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
