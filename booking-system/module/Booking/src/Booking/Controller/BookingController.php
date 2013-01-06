@@ -26,7 +26,7 @@ class BookingController extends AbstractActionController {
 
 	public function addUserAction(){
 		return array(
-			'key' => "Hello world"
+			'key' => "add user"
 			
 		);
 	}

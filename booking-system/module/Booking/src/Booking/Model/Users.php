@@ -9,7 +9,6 @@ class Users
     public $name;
 	public $dateOfBirth;
 	public $email;
-
     public function exchangeArray($data)
     {
         $this->id     = (isset($data['id'])) ? $data['id'] : null;

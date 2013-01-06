@@ -1,16 +1,128 @@
+<?php
+echo $this->headLink(array('rel' => 'shortcut icon', 'type' => '', 'href' => $this->basePath() . ''))
+        ->prependStylesheet($this->basePath() . '/css/style_resource.css')
+?>
+
+<!-- Scripts -->
+<?php
+echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+        ->prependFile($this->basePath() . '/js/jquery.columnfilters.js')
+?>
+<style type="text/css">
+
+    table tr th {
+        background-color: #d3DADE;
+        padding: 3px;
+    }
+    table tr.rowb { background-color:#EAf2FD; }
+
+    table tr.filterColumns td { padding:2px; }
+
+    body { padding-bottom:150px; }
+
+
+</style>
+<div id="form_resurce">
+    <h1>Resurce List</h1>
+    <table class="table" id="filterTable1" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <th>Resource</th>
+                <th>Quality</th>
+                <th>Description</th>
+                <th>Book</th>
+            </tr>
+
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+
+            <tr>
+                <td>LCD-02</td>
+                <td>Good</td>
+                <td>non</td>
+                <td><input type="button" name="Book" value="Book"></td>
+            </tr>
+            <tr>
+                <td>LCD-02</td>
+                <td>Good</td>
+                <td>non</td>
+                <td><input type="button" name="Book" value="Book"></td>
+            </tr>
+            <tr>
+                <td>LCD-02</td>
+                <td>Good</td>
+                <td>non</td>
+                <td><input type="button" name="Book" value="Book"></td>
+            </tr>
+            <tr>
+                <td>LCD-02</td>
+                <td>Good</td>
+                <td>non</td>
+                <td><input type="button" name="Book" value="Book"></td>
+            </tr>
+            <tr>
+                <td>LCD-02</td>
+                <td>Good</td>
+                <td>non</td>
+                <td><input type="button" name="Book" value="Book"></td>
+            </tr>
+            <tr>
+                <td>LCD-02</td>
+                <td>Bad</td>
+                <td>non</td>
+                <td><input type="button" name="Book" value="Book"></td>
+            </tr>
+            <tr>
+
+                <td>Room-206-F</td>
+                <td>Good</td>
+                <td>nice</td>
+                <td><input type="button" name="Book" value="Book"></td>
+            </tr>
+            <tr>
+
+                <td>Room-206-F</td>
+                <td>Good</td>
+                <td>non</td>
+                <td><input type="button" name="Book" value="Book"></td>
+            </tr>
+            <tr>
+
+                <td>Room-206-F</td>
+                <td>Good</td>
+                <td>non</td>
+                <td><input type="button" name="Book" value="Book"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    jQuery(document).ready(function() {
+        jQuery('table#filterTable1').columnFilters({alternateRowClassNames:['rowa','rowb']});
+        jQuery('table#filterTable2').columnFilters({alternateRowClassNames:['rowa','rowb'], excludeColumns:[2,3]});
+        jQuery('table#filterTable3').columnFilters({caseSensitive:true});
+        jQuery('table#filterTable4').columnFilters({minSearchCharacters:3});
+        jQuery('table#filterTable5').columnFilters({wildCard:'#',notCharacter:'?'});
+    });
+</script>
+</html>
+
+
+
 <table class="table">
-<?php foreach ($rooms as $room) : ?>
-<tr>
-    <td><?php echo $this->escapeHtml($room->id);?></td>
-    <td><?php echo $this->escapeHtml($room->number);?></td>
-	<td><?php echo $this->escapeHtml($room->idBuilding); ?></td>
-    <td>
-        <a href="">Edit</a>
-        <a href="">Delete</a>
-		<a href="">Add</a>
-    </td>
-</tr>
-<?php endforeach; ?>
+    <?php foreach ($rooms as $room) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($room->id); ?></td>
+            <td><?php echo $this->escapeHtml($room->number); ?></td>
+            <td><?php echo $this->escapeHtml($room->idBuilding); ?></td>
+            <td>
+                <a href="">Edit</a>
+                <a href="">Delete</a>
+                <a href="">Add</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
 </table>
 
 

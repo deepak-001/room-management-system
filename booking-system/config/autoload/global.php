@@ -9,7 +9,7 @@ return array(
     ),
 	'db' => array(
 		'driver' => 'Pdo',
-		'dsn' => 'mysql:dbname=db_room_management;host=localhost',
+		'dsn' => 'mysql:dbname=room-management-system;host=localhost',
 		'username' => 'root',
 		'password' => '',
 		'driver_options' => array(
@@ -23,7 +23,7 @@ return array(
                 'params' => array(
                     'host'     => 'localhost',
                     'port'     => '3306',
-                    'dbname'   => 'db_room_management',
+                    'dbname'   => 'room-management-system',
                 )
             )
         )
