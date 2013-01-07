@@ -24,6 +24,8 @@ return array(
                     'host'     => 'localhost',
                     'port'     => '3306',
                     'dbname'   => 'room-management-system',
+					'user' => 'root',
+					'password' => '',
                 )
             )
         )
