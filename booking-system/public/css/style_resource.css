@@ -1,0 +1,25 @@
+body{
+	margin: auto;
+}
+#filterTable1{
+	float: left;
+	margin-right: 300px;
+}
+#title{
+	position: relative;
+	left: 0;
+	text-align: center;
+	width: 70%;
+}
+h1 {
+    color: blue !important;
+    text-align: center !important;
+}
+tr{
+	color: blue !important;
+}
+td{
+	width: 180px;
+	text-align: center;
+}
+
