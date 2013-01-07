@@ -1,9 +1,15 @@
 <?php
 return array(
     'modules' => array(
-        //'DoctrineModule',
-        //'DoctrineORMModule',
-		'Booking'
+		'Booking',
+		'ZfcBase',
+		'ZfcUser',
+		'BjyAuthorize',
+		'DoctrineModule',
+		'DoctrineORMModule',
+		'ZfcUserDoctrineORM',
+		'ZfcAdmin',
+		'ZfcUserAdmin',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(
