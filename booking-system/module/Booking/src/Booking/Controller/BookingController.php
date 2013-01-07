@@ -15,25 +15,23 @@ use Zend\View\Model\ViewModel;
 use Booking\Model\UsersModel;
 use Booking\Model\RoomsTable;
 
-
 class BookingController extends AbstractActionController {
-	
-	public function indexAction(){
-		return array(
-			'key' => "Hello World this is booking page"
-		);
-	}
 
-	public function addUserAction(){
-		return array(
-			'key' => "add user"
-			
-		);
-	}
-	   public function addRoomAction(){
-		   
-		   return array(
-			   'key' => $_POST["fname"]
-		   );
-	   }
+    public function indexAction() {
+        return array(
+            'key' => "Hello World this is booking page"
+        );
+    }
+
+    public function addUserAction() {
+        return;
+    }
+
+    public function addRoomAction() {
+
+        return array(
+            'key' => $_POST["fname"]
+        );
+    }
+
 }
