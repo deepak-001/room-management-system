@@ -24,12 +24,12 @@ return array(
             /* here, 'guest' and 'user are defined as top-level roles, with
              * 'admin' inheriting from user
              */
-            'BjyAuthorize\Provider\Role\Config' => array(
-                'guest' => array(),
-                'user'  => array('children' => array(
-                    'admin' => array(),
-                )),
-            ),
+//            'BjyAuthorize\Provider\Role\Config' => array(
+//                'guest' => array(),
+//                'user'  => array('children' => array(
+//                    'admin' => array(),
+//                )),
+//            ),
 
             // this will load roles from the user_role table in a database
             // format: user_role(role_id(varchar), parent(varchar))
@@ -59,7 +59,7 @@ return array(
                 'allow' => array(
                     // allow guests and users (and admins, through inheritance)
                     // the "wear" privilege on the resource "pants"
-                    array(array('guest', 'user'), 'pants', 'wear')
+                    array(array('guest', 'student', 'teacher'), 'pants', 'wear')
                 ),
 
                 // Don't mix allow/deny rules if you are using role inheritance.
@@ -79,10 +79,11 @@ return array(
              * You may omit the 'action' index to allow access to the entire controller
              */
             'BjyAuthorize\Guard\Controller' => array(
-                array('controller' => 'index', 'action' => 'index', 'roles' => array('guest','user')),
-                array('controller' => 'index', 'action' => 'stuff', 'roles' => array('user')),
+                array('controller' => 'index', 'action' => 'index', 'roles' => array('guest')),
+                array('controller' => 'index', 'action' => 'stuff', 'roles' => array()),
                 array('controller' => 'zfcuser', 'roles' => array()),
-				
+                array('controller' => 'zfcuseradmin' , 'action'=>'list', 'roles' => array('teacher')),
+                array('controller' => 'index' , 'action'=>'showRooms', 'roles' => array('student')),
                 // Below is the default index action used by the [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
                 // array('controller' => 'Application\Controller\Index', 'roles' => array('guest', 'user')),
             ),

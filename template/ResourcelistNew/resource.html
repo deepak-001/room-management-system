@@ -96,13 +96,14 @@ body { padding-bottom:150px; }
 </tr>
 </tbody>
 </table>
+                </div>
 <script>
-	$(document).ready(function() {
-		$('table#filterTable1').columnFilters({alternateRowClassNames:['rowa','rowb']});
-		$('table#filterTable2').columnFilters({alternateRowClassNames:['rowa','rowb'], excludeColumns:[2,3]});
-		$('table#filterTable3').columnFilters({caseSensitive:true});
-		$('table#filterTable4').columnFilters({minSearchCharacters:3});
-		$('table#filterTable5').columnFilters({wildCard:'#',notCharacter:'?'});
+	jQuery(document).ready(function() {
+		jQuery('table#filterTable1').columnFilters({alternateRowClassNames:['rowa','rowb']});
+		jQuery('table#filterTable2').columnFilters({alternateRowClassNames:['rowa','rowb'], excludeColumns:[2,3]});
+		jQuery('table#filterTable3').columnFilters({caseSensitive:true});
+		jQuery('table#filterTable4').columnFilters({minSearchCharacters:3});
+		jQuery('table#filterTable5').columnFilters({wildCard:'#',notCharacter:'?'});
 	});
 </script>
 </html>
