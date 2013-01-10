@@ -1,15 +1,8 @@
-<table class="table">
-
-<?php foreach ($users as $user) : ?>
-<tr>
-    <td><?php echo $this->escapeHtml($user->id);?></td>
-    <td><?php echo $this->escapeHtml($user->name);?></td>
-    <td><?php echo $this->escapeHtml($user->email); ?></td>
-    <td>
-        <a href="#">Edit</a>
-        <a href="#">Delete</a>
-	<a href="<?php echo $this->url('booking/add-user'); ?>">Add</a>
-    </td>
-</tr>
-<?php endforeach; ?>
-</table>
+<?php
+var_dump($users);
+var_dump (get_class_methods(get_class($users[0])));
+foreach($users as $user){
+	echo $user->getUserId();
+	
+}
+?>

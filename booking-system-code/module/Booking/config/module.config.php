@@ -7,6 +7,8 @@
  * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
+namespace Booking;
+
 return array(
 	'router' => array(
 		'routes' => array(
@@ -35,7 +37,7 @@ return array(
 					'rooms-list' => array(
 						'type' => 'Zend\Mvc\Router\Http\Literal',
 						'options' => array(
-							'route' => 'view',
+							'route' => 'resource',
 							'defaults' => array(
 								'controller' => 'index',
 								'action' => 'showRooms',
@@ -83,7 +85,7 @@ return array(
 			'users-list' => array(
 				'type' => 'Literal',
 				'options' => array(
-					'route' => '/user',
+					'route' => '/model',
 					'defaults' => array(
 						'controller' => 'index',
 						'action' => 'showUsers',

@@ -25,6 +25,7 @@ echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/
 <div id="form_resurce">
     <h1>Resurce List</h1>
     <table class="table" id="filterTable1" cellspacing="0" cellpadding="0">
+		
         <thead>
             <tr>
                 <th>Resource</th>
@@ -109,20 +110,9 @@ echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/
 </html>
 
 
+<?php
+var_dump(get_class_methods(get_class($this->rooms[0])));
 
-<table class="table">
-    <?php foreach ($rooms as $room) : ?>
-        <tr>
-            <td><?php echo $this->escapeHtml($room->id); ?></td>
-            <td><?php echo $this->escapeHtml($room->number); ?></td>
-            <td><?php echo $this->escapeHtml($room->idBuilding); ?></td>
-            <td>
-                <a href="">Edit</a>
-                <a href="">Delete</a>
-                <a href="">Add</a>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+?>
 
 

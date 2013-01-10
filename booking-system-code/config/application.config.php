@@ -1,7 +1,7 @@
 <?php
 return array(
     'modules' => array(
-		'Booking',
+	
 		'ZfcBase',
 		'ZfcUser',
 		'BjyAuthorize',
@@ -10,6 +10,7 @@ return array(
 		'ZfcUserDoctrineORM',
 		'ZfcAdmin',
 		'ZfcUserAdmin',
+		'Booking',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(

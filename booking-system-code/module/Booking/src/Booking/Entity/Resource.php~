@@ -1,0 +1,59 @@
+<?php
+
+namespace Booking\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Resource
+ *
+ * @ORM\Table(name="resource")
+ * @ORM\Entity
+ */
+class Resource
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numbers", type="integer", nullable=true)
+     */
+    private $numbers;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var \Booking\Entity\Category
+     *
+     * @ORM\ManyToOne(targetEntity="Booking\Entity\Category")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * })
+     */
+    private $category;
+
+    /**
+     * @var \Booking\Entity\Quality
+     *
+     * @ORM\ManyToOne(targetEntity="Booking\Entity\Quality")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="quality_id", referencedColumnName="id")
+     * })
+     */
+    private $quality;
+
+
+}

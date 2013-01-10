@@ -1,0 +1,55 @@
+<?php
+
+namespace Booking\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BookResource
+ *
+ * @ORM\Table(name="book_resource")
+ * @ORM\Entity
+ */
+class BookResource
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $userId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="resource_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $resourceId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="start_time", type="integer", nullable=true)
+     */
+    private $startTime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="end_time", type="integer", nullable=true)
+     */
+    private $endTime;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="report", type="string", length=255, nullable=true)
+     */
+    private $report;
+
+
+}

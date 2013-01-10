@@ -12,6 +12,8 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.*",
 		"zf-commons/zfc-base": "dev-master",
-		"zf-commons/zfc-user": "dev-master"
+		"zf-commons/zfc-user": "dev-master",
+		"zf-commons/zfc-user-doctrine-orm": "dev-master",
+		"heartsentwined/zf2-doctrine":"1.*"
     }
 }

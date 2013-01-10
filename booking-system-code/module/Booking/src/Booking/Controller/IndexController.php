@@ -12,58 +12,76 @@ namespace Booking\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Booking\Model\UsersModel;
-use Booking\Model\RoomsTable;
-
+use Booking\Entity\User;
+use Booking\Entity\Building;
 
 class IndexController extends AbstractActionController {
 
-    public function indexAction() {
-        
-        return array(
-            'key' => 'Hello world'
-            
-        );
+	public function indexAction() {
+
+		return array(
+			'key' => 'Hello world'
+		);
 //        return new ViewModel(
 //                );
-    }
-    public function readJsonAction(){
-        $id =3 ;
-        $name = 'speeder';
-		$array = array('id'=> $id, 'name' => $name);
-        $path ='Booking\Model\UsersTable';
+	}
+
+	public function readJsonAction() {
+		$id = 3;
+		$name = 'speeder';
+		$array = array('id' => $id, 'name' => $name);
+		$path = 'Booking\Model\UsersTable';
 		$this->getServiceLocator()->get($path)->saveUsers($array);
+	}
+
+	public function showUsersAction() {
+
+		$user = new User;
+		$user->setUsername('odom');
+		$user->setPassword('pasword');
+		$user=$this->getEntityManager()->persist($user);
 		
-        
-//       return array(
-//           'key' => 'readJsonAction'
-//       );
-       
-       }
-	   
-	   public function showUsersAction(){
-		   $path ='Booking\Model\UsersTable';
-//		   $users = $this->getServiceLocator()->get($path)->fetchAll();
-//		   echo count($users);
-//		   var_dump($users);
-		   return new ViewModel(array(
-            'users' => $this->getServiceLocator()->get($path)->fetchAll(),
-			));
-//		    return array(
-//			   'key' => 'This view action'
-//		   );
-	   }
-	   public function showRoomsAction(){
-		   $path ='Booking\Model\RoomsTable';
-		   return new ViewModel(array(
-            'rooms' => $this->getServiceLocator()->get($path)->fetchAll(),
-			));
-	   }
-	   public function viewAction(){
-		   return array(
-			   'key' => 'This view action'
-		   );
-	   }
-    
+		$this->getEntityManager()->flush();
+		
+		
+		return new ViewModel(array(
+					'users' => $this->getEntityManager()->getRepository('Booking\Entity\User')->findAll(),
+				));
+	}
+
+	public function showRoomsAction() {
+		return new ViewModel(array(
+					'rooms' =>$this->getEntityManager()->getRepository('Booking\Entity\Room')->findAll(),
+				));
+	}
+	public function addBuilding(){
+		$building = new Building;
+	}
+	public function viewAction() {
+		return array(
+			'key' => 'This view action'
+		);
+	}
+
+	/**
+	 * Entity manager instance
+	 * 
+	 * @var Doctrine\ORM\EntityManager
+	 */
+	protected $em;
+
+	/**
+	 * Returns an instance of the Doctrine entity manager loaded from the service 
+	 * locator
+	 * 
+	 * @return Doctrine\ORM\EntityManager
+	 */
+	public function getEntityManager() {
+		if (null === $this->em) {
+			$this->em = $this->getServiceLocator()
+					->get('doctrine.entitymanager.orm_default');
+		}
+		return $this->em;
+	}
 
 }
