@@ -17,18 +17,9 @@ class BookRoom
      *
      * @ORM\Column(name="user_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $userId;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="room_id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $roomId;
 
     /**
      * @var integer
@@ -51,20 +42,19 @@ class BookRoom
      */
     private $report;
 
-
-
     /**
-     * Set userId
+     * @var \Booking\Entity\Room
      *
-     * @param integer $userId
-     * @return BookRoom
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToOne(targetEntity="Booking\Entity\Room")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="room_id", referencedColumnName="id")
+     * })
      */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    
-        return $this;
-    }
+    private $room;
+
+
 
     /**
      * Get userId
@@ -74,29 +64,6 @@ class BookRoom
     public function getUserId()
     {
         return $this->userId;
-    }
-
-    /**
-     * Set roomId
-     *
-     * @param integer $roomId
-     * @return BookRoom
-     */
-    public function setRoomId($roomId)
-    {
-        $this->roomId = $roomId;
-    
-        return $this;
-    }
-
-    /**
-     * Get roomId
-     *
-     * @return integer 
-     */
-    public function getRoomId()
-    {
-        return $this->roomId;
     }
 
     /**
@@ -166,5 +133,28 @@ class BookRoom
     public function getReport()
     {
         return $this->report;
+    }
+
+    /**
+     * Set room
+     *
+     * @param \Booking\Entity\Room $room
+     * @return BookRoom
+     */
+    public function setRoom(\Booking\Entity\Room $room)
+    {
+        $this->room = $room;
+    
+        return $this;
+    }
+
+    /**
+     * Get room
+     *
+     * @return \Booking\Entity\Room 
+     */
+    public function getRoom()
+    {
+        return $this->room;
     }
 }

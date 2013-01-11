@@ -8,8 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="Booking\Repository\User")
- * 
+ * @ORM\Entity
  */
 class User
 {
@@ -78,7 +77,29 @@ class User
      */
     private $state;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Booking\Entity\UserRole", inversedBy="user")
+     * @ORM\JoinTable(name="user_role_linker",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="role_id", referencedColumnName="role_id")
+     *   }
+     * )
+     */
+    private $role;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->role = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get userId
@@ -272,5 +293,38 @@ class User
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * Add role
+     *
+     * @param \Booking\Entity\UserRole $role
+     * @return User
+     */
+    public function addRole(\Booking\Entity\UserRole $role)
+    {
+        $this->role[] = $role;
+    
+        return $this;
+    }
+
+    /**
+     * Remove role
+     *
+     * @param \Booking\Entity\UserRole $role
+     */
+    public function removeRole(\Booking\Entity\UserRole $role)
+    {
+        $this->role->removeElement($role);
+    }
+
+    /**
+     * Get role
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

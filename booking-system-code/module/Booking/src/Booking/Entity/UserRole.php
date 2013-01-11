@@ -35,7 +35,21 @@ class UserRole
      */
     private $parent;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Booking\Entity\User", mappedBy="role")
+     */
+    private $user;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get roleId
@@ -91,5 +105,38 @@ class UserRole
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \Booking\Entity\User $user
+     * @return UserRole
+     */
+    public function addUser(\Booking\Entity\User $user)
+    {
+        $this->user[] = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Booking\Entity\User $user
+     */
+    public function removeUser(\Booking\Entity\User $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

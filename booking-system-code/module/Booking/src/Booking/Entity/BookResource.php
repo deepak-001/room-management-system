@@ -17,18 +17,9 @@ class BookResource
      *
      * @ORM\Column(name="user_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $userId;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="resource_id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $resourceId;
 
     /**
      * @var integer
@@ -51,20 +42,19 @@ class BookResource
      */
     private $report;
 
-
-
     /**
-     * Set userId
+     * @var \Booking\Entity\Resource
      *
-     * @param integer $userId
-     * @return BookResource
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToOne(targetEntity="Booking\Entity\Resource")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
+     * })
      */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    
-        return $this;
-    }
+    private $resource;
+
+
 
     /**
      * Get userId
@@ -74,29 +64,6 @@ class BookResource
     public function getUserId()
     {
         return $this->userId;
-    }
-
-    /**
-     * Set resourceId
-     *
-     * @param integer $resourceId
-     * @return BookResource
-     */
-    public function setResourceId($resourceId)
-    {
-        $this->resourceId = $resourceId;
-    
-        return $this;
-    }
-
-    /**
-     * Get resourceId
-     *
-     * @return integer 
-     */
-    public function getResourceId()
-    {
-        return $this->resourceId;
     }
 
     /**
@@ -166,5 +133,28 @@ class BookResource
     public function getReport()
     {
         return $this->report;
+    }
+
+    /**
+     * Set resource
+     *
+     * @param \Booking\Entity\Resource $resource
+     * @return BookResource
+     */
+    public function setResource(\Booking\Entity\Resource $resource)
+    {
+        $this->resource = $resource;
+    
+        return $this;
+    }
+
+    /**
+     * Get resource
+     *
+     * @return \Booking\Entity\Resource 
+     */
+    public function getResource()
+    {
+        return $this->resource;
     }
 }
