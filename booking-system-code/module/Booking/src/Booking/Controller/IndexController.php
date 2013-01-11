@@ -14,16 +14,13 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Booking\Entity\User;
 use Booking\Entity\Building;
+use Booking\Entity\Room;
+use Booking\Form\BookingForm;
 
 class IndexController extends AbstractActionController {
 
 	public function indexAction() {
 
-		return array(
-			'key' => 'Hello world'
-		);
-//        return new ViewModel(
-//                );
 	}
 
 	public function readJsonAction() {
@@ -49,10 +46,14 @@ class IndexController extends AbstractActionController {
 				));
 	}
 
+
 	public function showRoomsAction() {
-		return new ViewModel(array(
-					'rooms' =>$this->getEntityManager()->getRepository('Booking\Entity\Room')->findAll(),
-				));
+//	$room = new Room;
+	
+//	$user=$this->getEntityManager()->persist($room)->;
+	return new ViewModel(array(
+		'rooms' => $this->getEntityManager()->getRepository('Booking\Entity\Room')->findAll()
+	));
 	}
 	public function addBuilding(){
 		$building = new Building;
@@ -60,6 +61,13 @@ class IndexController extends AbstractActionController {
 	public function viewAction() {
 		return array(
 			'key' => 'This view action'
+		);
+	}
+		public function addAction() {
+			$form = new BookingForm();
+			$form->get('name')->setValue('Hello');
+		return array(
+			'form' => $form
 		);
 	}
 

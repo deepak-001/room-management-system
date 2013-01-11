@@ -3,14 +3,14 @@
 namespace Booking\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use ZfcUser\Entity\UserInterface;
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -55,7 +55,14 @@ class User
      * @ORM\Column(name="email", type="string", length=64, nullable=true)
      */
     private $email;
-
+	
+	 /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", nullable=true)
+     */
+    private $gender;
+	
     /**
      * @var integer
      *
@@ -111,15 +118,32 @@ class User
         return $this->userId;
     }
 
+    public function getId()
+    {
+        return $this->userId;
+    }
+
+	public function setId($id){
+		$this->userId = $id;
+	}
     /**
-     * Set disabled
+     * Get getGender
      *
-     * @param boolean $disabled
+     * @return string 
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+	 /**
+     * Set gender
+     *
+     * @param boolean $gender
      * @return User
      */
-    public function setDisabled($disabled)
+    public function setGender($gender)
     {
-        $this->disabled = $disabled;
+        $this->gender = $gender;
     
         return $this;
     }

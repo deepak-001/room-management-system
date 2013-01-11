@@ -24,75 +24,6 @@ return array(
 				),
 				'may_terminate' => true,
 				'child_routes' => array(
-					'user-list' => array(
-						'type' => 'Zend\Mvc\Router\Http\Literal',
-						'options' => array(
-							'route' => 'users',
-							'defaults' => array(
-								'controller' => 'index',
-								'action' => 'showUsers',
-							),
-						),
-					),
-					'rooms-list' => array(
-						'type' => 'Zend\Mvc\Router\Http\Literal',
-						'options' => array(
-							'route' => 'resource',
-							'defaults' => array(
-								'controller' => 'index',
-								'action' => 'showRooms',
-							),
-						),
-					),
-				),
-			),
-			// Booking Action //
-			'booking' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
-				'options' => array(
-					'route' => '/booking',
-					'defaults' => array(
-						'controller' => 'Booking\Controller\booking',
-						'action' => 'index',
-					),
-				),
-				'may_terminate' => true,
-				'child_routes' => array(
-					'add_room' => array(
-						'type' => 'Zend\Mvc\Router\Http\Literal',
-						'options' => array(
-							'route' => '/add_room',
-							'defaults' => array(
-								'controller' => 'Booking\Controller\booking',
-								'action' => 'addRoom',
-							),
-						),
-					),
-					'add_user' => array(
-						'type' => 'Zend\Mvc\Router\Http\Literal',
-						'options' => array(
-							'route' => '/add_user',
-							'defaults' => array(
-								'controller' => 'Booking\Controller\booking',
-								'action' => 'addUser',
-							),
-						),
-					),
-				),
-			),
-			
-			// User Management //
-			'users-list' => array(
-				'type' => 'Literal',
-				'options' => array(
-					'route' => '/model',
-					'defaults' => array(
-						'controller' => 'index',
-						'action' => 'showUsers',
-					),
-				),
-				'may_terminate' => true,
-				'child_routes' => array(
 					'default' => array(
 						'type' => 'Segment',
 						'options' => array(
@@ -138,7 +69,7 @@ return array(
 		'not_found_template' => 'error/404',
 		'exception_template' => 'error/index',
 		'template_map' => array(
-			'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+			'layout/layout' => __DIR__ . '/../view/layout/admin.phtml',
 			'error/404' => __DIR__ . '/../view/error/404.phtml',
 			'error/index' => __DIR__ . '/../view/error/index.phtml',
 		),
