@@ -1,0 +1,17 @@
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('home/default', array('controller'=>'index','action' => 'addRoom')));
+$form->prepare();
+//$form = $this -> form;
+echo $this->form()->openTag($form) . PHP_EOL;
+
+echo  $this->formRow($form->get('roomNum')) . PHP_EOL;
+echo '<br />';
+echo $this->formRow($form->get('description')) . PHP_EOL;
+echo '<br />';
+echo $this->formRow($form->get('building')) . PHP_EOL;
+echo '<br />';
+echo $this->formInput($form->get('submit')) . PHP_EOL;
+
+echo $this->form()->closeTag($form) . PHP_EOL;

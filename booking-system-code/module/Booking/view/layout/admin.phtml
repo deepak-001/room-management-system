@@ -58,11 +58,16 @@
                             <li class="active"><a href="<?php echo $this->url('home') ?>"> Home </a> </li>
                             <li class="active"><a href="<?php echo $this->url('zfcuser/register') ?>"> Register  </a> </li>
                             <li class="active"><a href="<?php echo $this->url('zfcadmin/zfcuseradmin/list') ?>"> Users </a> </li>
-                            <li class="active"><a href="<?php // echo $this->url('home/rooms-list') ?>"> Resource </a></li> 
+                            <li class="active"><a href="<?php 
+							
+							echo $this->url('home/default', array('controller'=>'index','action'=>'showRooms') ) 
+							
+									?>"> RooM List </a></li> 
                             <li class="active"><a href="<?php // echo $this->url('home/rooms-list') ?>"> Profile </a></li>
                             <li class="active"><a href="<?php // echo $this->url('home/rooms-list') ?>"> About </a></li>
                             <li class="active"><a href="<?php echo $this->url('zfcuser/login') ?>"> Login </a></li>
-                            <li class="active"><a href="<?php echo $this->url('zfcuser/logout') ?>"> Logout </a></li>
+                            <li class="active"><a href="<?php 
+							echo $this->url('zfcuser/logout') ?>"> Logout </a></li>
                         </ul>
                     </div>
                 </div>

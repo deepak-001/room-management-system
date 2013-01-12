@@ -7,6 +7,7 @@
  * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
+
 namespace Booking;
 
 return array(
@@ -27,7 +28,7 @@ return array(
 					'default' => array(
 						'type' => 'Segment',
 						'options' => array(
-							'route' => '/[:controller[/:action]]',
+							'route' => '[:controller[/:action]]',
 							'constraints' => array(
 								'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
 								'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -51,17 +52,16 @@ return array(
 			'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
 		),
 	),
-    'translator' => array(
-        'locale' => 'en_US',
-        'translation_file_patterns' => array(
-            array(
-                'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
-                'pattern'  => '%s.mo',
-            ),
-        ),
-    ),
-
+	'translator' => array(
+		'locale' => 'en_US',
+		'translation_file_patterns' => array(
+			array(
+				'type' => 'gettext',
+				'base_dir' => __DIR__ . '/../language',
+				'pattern' => '%s.mo',
+			),
+		),
+	),
 	'view_manager' => array(
 		'display_not_found_reason' => true,
 		'display_exceptions' => true,

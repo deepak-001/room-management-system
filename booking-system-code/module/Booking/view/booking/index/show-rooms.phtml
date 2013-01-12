@@ -22,79 +22,52 @@ echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/
 
 
 </style>
+<?php
+//$this->title('Hello');
+
+
+
+?>
 <div id="form_resurce">
-    <h1>Resurce List</h1>
+    <h1>RooM List</h1>
+	<a href="<?php echo $this->url('home/default',array('controller'=>'index','action'=>'addRoom')) ?>">Add RooM</a>
     <table class="table" id="filterTable1" cellspacing="0" cellpadding="0">
 		
         <thead>
             <tr>
-                <th>Resource</th>
+                <th>Name</th>
                 <th>Quality</th>
                 <th>Description</th>
-                <th>Book</th>
+                <th></th>
             </tr>
 
         </thead>
         <tfoot></tfoot>
         <tbody>
+<?php
+$i=1;
 
-            <tr>
-                <td>LCD-02</td>
-                <td>Good</td>
-                <td>non</td>
-                <td><input type="button" name="Book" value="Book"></td>
-            </tr>
-            <tr>
-                <td>LCD-02</td>
-                <td>Good</td>
-                <td>non</td>
-                <td><input type="button" name="Book" value="Book"></td>
-            </tr>
-            <tr>
-                <td>LCD-02</td>
-                <td>Good</td>
-                <td>non</td>
-                <td><input type="button" name="Book" value="Book"></td>
-            </tr>
-            <tr>
-                <td>LCD-02</td>
-                <td>Good</td>
-                <td>non</td>
-                <td><input type="button" name="Book" value="Book"></td>
-            </tr>
-            <tr>
-                <td>LCD-02</td>
-                <td>Good</td>
-                <td>non</td>
-                <td><input type="button" name="Book" value="Book"></td>
-            </tr>
-            <tr>
-                <td>LCD-02</td>
-                <td>Bad</td>
-                <td>non</td>
-                <td><input type="button" name="Book" value="Book"></td>
-            </tr>
-            <tr>
-
-                <td>Room-206-F</td>
-                <td>Good</td>
-                <td>nice</td>
-                <td><input type="button" name="Book" value="Book"></td>
-            </tr>
-            <tr>
-
-                <td>Room-206-F</td>
-                <td>Good</td>
-                <td>non</td>
-                <td><input type="button" name="Book" value="Book"></td>
-            </tr>
-            <tr>
-
-                <td>Room-206-F</td>
-                <td>Good</td>
-                <td>non</td>
-                <td><input type="button" name="Book" value="Book"></td>
-            </tr>
+foreach ($rooms as $room) {
+	
+	echo '<tr>';
+	if(! is_object($room->getBuilding())){
+		echo '<td> ### -'.$room->getNumber().'</td>'	;
+	}else{
+		echo '<td>'.$room->getBuilding()->getName().'-'.$room->getNumber().'</td>'	;
+	}
+	if(is_object($room->getQuality())){
+		echo '<td>'.$room->getQuality()->getType().'</td>';
+	}else{
+		echo '<td> ### '.'</td>';
+	}
+	
+	echo '<td>'.$room->getDescription().'</td>';
+//	echo '<td>'.'<a href="'.$this->url('home/default/edit', array('id' => $room->getId())).'">edit</a>'.'</td></tr>';
+//	echo '<td><input type="button" name="Book" value="Book"></td></tr>';
+	$i++;
+}
+?>
+           
         </tbody>
     </table>
 </div>
@@ -108,11 +81,4 @@ echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/
     });
 </script>
 </html>
-
-
-<?php
-var_dump(get_class_methods(get_class($this->rooms[0])));
-
-?>
-
 

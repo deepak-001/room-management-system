@@ -16,19 +16,16 @@ use Booking\Entity\User;
 use Booking\Entity\Building;
 use Booking\Entity\Room;
 use Booking\Form\BookingForm;
+use Booking\Form\RoomForm;
 
 class IndexController extends AbstractActionController {
 
 	public function indexAction() {
-
+		
 	}
 
 	public function readJsonAction() {
-		$id = 3;
-		$name = 'speeder';
-		$array = array('id' => $id, 'name' => $name);
-		$path = 'Booking\Model\UsersTable';
-		$this->getServiceLocator()->get($path)->saveUsers($array);
+		
 	}
 
 	public function showUsersAction() {
@@ -36,36 +33,84 @@ class IndexController extends AbstractActionController {
 		$user = new User;
 		$user->setUsername('odom');
 		$user->setPassword('pasword');
-		$user=$this->getEntityManager()->persist($user);
-		
+		$user = $this->getEntityManager()->persist($user);
+
 		$this->getEntityManager()->flush();
-		
-		
+
+
 		return new ViewModel(array(
 					'users' => $this->getEntityManager()->getRepository('Booking\Entity\User')->findAll(),
 				));
 	}
 
+	public function addRoomAction() {
+		$form = new RoomForm();
+		$request = $this->getRequest();
+		$form->get('submit')->setAttribute('value', 'Add');
+
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+			$room = new Room;
+			$post = $request->getPost();
+			$room->setNumber($post->roomNum);
+			$building = $this->getEntityManager()->getRepository('Booking\Entity\Building')->findById((int) $post->building);
+			$room->setBuilding($building[0]);
+			$room->setDescription($post->description);
+
+			$room = $this->getEntityManager()->persist($room);
+
+			$this->getEntityManager()->flush();
+
+			return $this->redirect()->toRoute('home/default', array('controller' => 'index', 'action' => 'showRooms'));
+		}
+
+		return array('form' => $form);
+	}
 
 	public function showRoomsAction() {
-//	$room = new Room;
-	
-//	$user=$this->getEntityManager()->persist($room)->;
-	return new ViewModel(array(
-		'rooms' => $this->getEntityManager()->getRepository('Booking\Entity\Room')->findAll()
-	));
+		return new ViewModel(array(
+					'rooms' => $this->getEntityManager()->getRepository('Booking\Entity\Room')->findAll()
+				));
 	}
-	public function addBuilding(){
+	public function editAction(){
+		$id = $this->getEvent()->getRouteMatch()->getParam('id');
+		echo 'ID: '.$id;
+		$form = new RoomForm();
+		$request = $this->getRequest();
+		$form->get('submit')->setAttribute('value', 'Add');
+
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+			$room = new Room;
+			$post = $request->getPost();
+			$room->setNumber($post->roomNum);
+			$building = $this->getEntityManager()->getRepository('Booking\Entity\Building')->findById((int) $post->building);
+			$room->setBuilding($building[0]);
+			$room->setDescription($post->description);
+
+			$room = $this->getEntityManager()->persist($room);
+
+			$this->getEntityManager()->flush();
+
+			return $this->redirect()->toRoute('home/default', array('controller' => 'index', 'action' => 'showRooms'));
+		}
+
+		return array('form' => $form);
+	}
+
+	public function addBuilding() {
 		$building = new Building;
 	}
+
 	public function viewAction() {
 		return array(
 			'key' => 'This view action'
 		);
 	}
-		public function addAction() {
-			$form = new BookingForm();
-			$form->get('name')->setValue('Hello');
+
+	public function addAction() {
+		$form = new BookingForm();
+		$form->get('name')->setValue('Hello');
 		return array(
 			'form' => $form
 		);
