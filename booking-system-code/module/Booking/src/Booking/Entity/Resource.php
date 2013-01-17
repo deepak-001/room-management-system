@@ -55,6 +55,16 @@ class Resource
      */
     private $quality;
 
+    /**
+     * @var \Booking\Entity\Room
+     *
+     * @ORM\ManyToOne(targetEntity="Booking\Entity\Room")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="room_id", referencedColumnName="id")
+     * })
+     */
+    private $room;
+
 
 
     /**
@@ -157,5 +167,28 @@ class Resource
     public function getQuality()
     {
         return $this->quality;
+    }
+
+    /**
+     * Set room
+     *
+     * @param \Booking\Entity\Room $room
+     * @return Resource
+     */
+    public function setRoom(\Booking\Entity\Room $room = null)
+    {
+        $this->room = $room;
+    
+        return $this;
+    }
+
+    /**
+     * Get room
+     *
+     * @return \Booking\Entity\Room 
+     */
+    public function getRoom()
+    {
+        return $this->room;
     }
 }

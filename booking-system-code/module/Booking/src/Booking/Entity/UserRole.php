@@ -9,9 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="user_role")
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Booking\Repository\UserRoleRepository")
  */
-class UserRole 
+class UserRole
 {
     /**
      * @var string

@@ -1,9 +1,9 @@
 <?php
 
 namespace Booking\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
 use ZfcUser\Entity\UserInterface;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * User
  *
@@ -55,14 +55,32 @@ class User implements UserInterface
      * @ORM\Column(name="email", type="string", length=64, nullable=true)
      */
     private $email;
-	
-	 /**
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="gender", type="string", nullable=true)
+     * @ORM\Column(name="gender", type="string", length=11, nullable=false)
      */
     private $gender;
 	
+	 /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId(){
+		return $this->userId;
+	}
+
+    /**
+     * Set id.
+     *
+     * @param int $id
+     * @return UserInterface
+     */
+    public function setId($id){
+		$this->userId = $id;
+	}
     /**
      * @var integer
      *
@@ -117,33 +135,16 @@ class User implements UserInterface
     {
         return $this->userId;
     }
-
-    public function getId()
-    {
-        return $this->userId;
-    }
-
-	public function setId($id){
-		$this->userId = $id;
-	}
+	
     /**
-     * Get getGender
+     * Set disabled
      *
-     * @return string 
-     */
-    public function getGender()
-    {
-        return $this->gender;
-    }
-	 /**
-     * Set gender
-     *
-     * @param boolean $gender
+     * @param boolean $disabled
      * @return User
      */
-    public function setGender($gender)
+    public function setDisabled($disabled)
     {
-        $this->gender = $gender;
+        $this->disabled = $disabled;
     
         return $this;
     }
@@ -248,6 +249,29 @@ class User implements UserInterface
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     * @return User
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string 
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
 
     /**

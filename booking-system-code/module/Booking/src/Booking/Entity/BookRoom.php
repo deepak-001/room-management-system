@@ -15,16 +15,9 @@ class BookRoom
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Column(name="start_time", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $userId;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="start_time", type="integer", nullable=true)
      */
     private $startTime;
 
@@ -43,6 +36,18 @@ class BookRoom
     private $report;
 
     /**
+     * @var \Booking\Entity\User
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToOne(targetEntity="Booking\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     * })
+     */
+    private $user;
+
+    /**
      * @var \Booking\Entity\Room
      *
      * @ORM\Id
@@ -55,29 +60,6 @@ class BookRoom
     private $room;
 
 
-
-    /**
-     * Get userId
-     *
-     * @return integer 
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * Set startTime
-     *
-     * @param integer $startTime
-     * @return BookRoom
-     */
-    public function setStartTime($startTime)
-    {
-        $this->startTime = $startTime;
-    
-        return $this;
-    }
 
     /**
      * Get startTime
@@ -133,6 +115,29 @@ class BookRoom
     public function getReport()
     {
         return $this->report;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Booking\Entity\User $user
+     * @return BookRoom
+     */
+    public function setUser(\Booking\Entity\User $user)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Booking\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**

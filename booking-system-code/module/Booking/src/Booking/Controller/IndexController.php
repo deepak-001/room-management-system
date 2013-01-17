@@ -14,14 +14,21 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Booking\Entity\User;
 use Booking\Entity\Building;
+use Booking\Entity\Resource;
 use Booking\Entity\Room;
 use Booking\Form\BookingForm;
 use Booking\Form\RoomForm;
 
+
+
 class IndexController extends AbstractActionController {
 
 	public function indexAction() {
-		
+//		$time = time();
+//		echo time().'<br />';
+//		echo date(DATE_ATOM,'1358143200').'<br />';
+//		echo "Hello World";
+//		echo DATE_ATOM;
 	}
 
 	public function readJsonAction() {
@@ -98,10 +105,10 @@ class IndexController extends AbstractActionController {
 		return array('form' => $form);
 	}
 
-	public function addBuilding() {
+	public function addBuildingAction() {
 		$building = new Building;
 	}
-
+	
 	public function viewAction() {
 		return array(
 			'key' => 'This view action'
@@ -114,6 +121,11 @@ class IndexController extends AbstractActionController {
 		return array(
 			'form' => $form
 		);
+	}
+	public function listResourceAction(){
+		return new ViewModel(array(
+					'resource' => $this->getEntityManager()->getRepository('Booking\Entity\Resource')->findAll()
+				));
 	}
 
 	/**
