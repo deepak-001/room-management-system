@@ -51,10 +51,20 @@ class IndexController extends AbstractActionController {
 	}
 
 	public function addRoomAction() {
+		
 		$form = new RoomForm();
 		$request = $this->getRequest();
 		$form->get('submit')->setAttribute('value', 'Add');
-
+		
+		$buildingArray = array();
+		$buildings = $this->getEntityManager()->getRepository('Booking\Entity\Building')->findAll();
+		foreach($buildings as  $valueBuilding){
+			$buildingArray[$valueBuilding->getId()]=$valueBuilding->getName();
+		}
+		
+		$form->get('building')->setValueOptions($buildingArray);
+		
+		
 		$request = $this->getRequest();
 		if ($request->isPost()) {
 			$room = new Room;

@@ -1,7 +1,33 @@
 <?php
-var_dump($resource);
-foreach($resource as $res){	
-var_dump($res); break;
-}
-echo "Finish"
+//var_dump($resource);
+//foreach($resource as $res){	
+//var_dump($res); break;
+//}
+
+$albums= $resource;
 ?>
+<h1>Resource Table List</h1>
+
+<table class="table">
+<tr>
+    <th><?php echo ("Resource-ID"); ?></th>
+    <th><?php echo ("Resource-Name"); ?></th>
+	<th><?php echo ("Quality"); ?></th>
+    <th>&nbsp;</th>
+</tr>
+
+<?php foreach($albums as $resour) : ?>
+<tr>
+    <td><?php echo $resour->getId();?></td>
+    <td><?php echo $resour->getCategory()->getName().'-'. sprintf('%d',$resour->getnumbers());?></td>
+     <td><?php echo $resour->getQuality()->getType();?></td>
+	<td>
+        <a href="<?php ?>"><?php echo ('Edit'); ?></a>
+        <a href="<?php  ?>"><?php echo ('Delete'); ?></a>
+    </td>
+</tr>
+<?php endforeach; ?>
+
+
+
+</table>

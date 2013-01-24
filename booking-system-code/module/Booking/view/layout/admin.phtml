@@ -63,7 +63,7 @@
 							echo $this->url('home/default', array('controller'=>'index','action'=>'showRooms') ) 
 							
 									?>"> RooM List </a></li> 
-                            <li class="active"><a href="<?php // echo $this->url('home/rooms-list') ?>"> Profile </a></li>
+                            <li class="active"><a href="<?php echo $this->url('home/default',array('controller' => 'index','action'=>'listResource')) ?>"> List Resource </a></li>
                             <li class="active"><a href="<?php // echo $this->url('home/rooms-list') ?>"> About </a></li>
                             <li class="active"><a href="<?php echo $this->url('zfcuser/login') ?>"> Login </a></li>
                             <li class="active"><a href="<?php 

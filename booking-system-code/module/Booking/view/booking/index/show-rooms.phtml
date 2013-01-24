@@ -1,7 +1,24 @@
-<?php
-var_dump($rooms);
-//foreach($rooms as $res){	
-//var_dump($res); break;
-//}
-echo "Finish"
-?>
+<h1>Room List</h1>
+
+
+<a href="<?php echo  $this->url('home/default',array('controller' => 'index','action'=>'addRoom')); ?>">add</a>
+<table class="table">
+<tr>
+    <th><?php echo ("Room-ID"); ?></th>
+    <th><?php echo ("Room-Name"); ?></th>
+	<th><?php echo ("Quality"); ?></th>
+    <th>&nbsp;</th>
+</tr>
+
+<?php foreach($rooms as $room) : ?>
+<tr>
+    <td><?php echo $room->getId();?></td>
+    <td><?php echo $room->getBuilding()->getName().'-'. sprintf('%d',$room->getNumber());?></td>
+     <td><?php echo $room->getQuality()->getType();?></td>
+	<td>
+        <a href="<?php ?>"><?php echo ('Edit'); ?></a>
+        <a href="<?php  ?>"><?php echo ('Delete'); ?></a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
