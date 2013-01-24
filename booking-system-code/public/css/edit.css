@@ -1,0 +1,13 @@
+/* 
+    Document   : edit
+    Created on : Jan 17, 2013, 10:17:49 AM
+    Author     : John_Odom
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+label span{ 
+    display: inline-block;
+	width: 80px;
+}
+
