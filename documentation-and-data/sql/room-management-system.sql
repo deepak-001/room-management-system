@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(64) DEFAULT '',
   `password` varchar(255) DEFAULT '',
   `email` varchar(64) DEFAULT '',
+  `gender` char(1) DEFAULT '',
   `last_login_time` int(11) unsigned DEFAULT '0',
   `display_name` varchar(50) DEFAULT NULL,
   `state` smallint(6) DEFAULT NULL,
