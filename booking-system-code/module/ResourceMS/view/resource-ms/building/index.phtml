@@ -5,12 +5,29 @@
 <?php endif; ?>
 
 <?php
-
 foreach ($buildings as $building) {
 	echo '<div class="well">';
 	echo '<p>Building : ' . $building->getName() . '</p>';
 	echo '<p>' . $building->getDescription() . '</p>';
-	echo '<a href="' . $this->url('manage/room', array('action' => 'create', 'building'=>$building->getName())) . '">Add room</a>';
+	echo '<br />';
+	echo 'Rooms:  ';
+	if (0 < count($rooms[$building->getId()])) {
+		foreach ($rooms[$building->getId()] as $room) {
+			?>
+			<div class="btn-group">
+				<a href="<?php echo $this->url('manage/resource', array('room' => $room->getId())) ?>" class="btn"><?php echo $building->getName() . ' - ' . $room->getNumber(); ?></a>
+				<a class="btn dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="<?php echo $this->url('manage/room', array('room' => $room->getId(), 'action' => 'edit', 'building' => $building->getName())) ?>">Edit</a></li>
+					<li><a href="<?php echo $this->url('manage/room', array('room' => $room->getId(), 'action' => 'delete', 'building' => $building->getName())) ?>">Delete</a></li>
+				</ul>
+			</div>
+			<?php
+		}
+	}
+	echo '<br /><a href="' . $this->url('manage/room', array('action' => 'create', 'building' => $building->getName())) . '">Add room</a>';
 	echo '</div>';
 }
 ?>

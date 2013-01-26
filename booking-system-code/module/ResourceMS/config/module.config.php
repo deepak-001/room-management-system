@@ -49,9 +49,10 @@ return array(
 					'room' => array(
 						'type' => 'Segment',
 						'options' => array(
-							'route' => 'room/in/building/[:building[/:action]]',
+							'route' => 'room/in/building/[:building[/:action[/:room]]]',
 							'constraints' => array(
 								'building' => '[a-zA-Z][a-zA-Z0-9_-]*',
+								'room' => '[0-9]+',
 							),
 							'defaults' => array(
 								'controller' => 'room',

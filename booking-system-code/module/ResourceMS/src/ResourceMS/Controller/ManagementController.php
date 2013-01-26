@@ -7,7 +7,7 @@ use Zend\View\Model\ViewModel;
 
 class ManagementController extends AbstractActionController {
 
-	public function roomAction() {
+	public function indexAction() {
 		return new ViewModel(
 						array(
 						)

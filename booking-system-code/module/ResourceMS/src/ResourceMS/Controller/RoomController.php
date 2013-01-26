@@ -31,9 +31,10 @@ class RoomController extends AbstractActionController {
 	}
 
 	public function createAction() {
+
 		$roomForm = new \ResourceMS\Form\RoomForm();
 		$buildingName = $this->params('building');
-		
+
 		$request = $this->getRequest();
 		if ($request->isPost()) {
 			$roomFilter = new \ResourceMS\Form\Filter\RoomFilter();
@@ -47,8 +48,6 @@ class RoomController extends AbstractActionController {
 				$room = new \ResourceMS\Entity\Room();
 				$building = $this->getEntityManager()->getRepository('ResourceMS\Entity\Building')->findOneBy(array('name' => $buildingName));
 
-				var_dump($building);
-				
 				if (NULL !== $building) {
 
 					$room->setBuilding($building);
@@ -60,7 +59,10 @@ class RoomController extends AbstractActionController {
 
 					$this->flashMessenger()->addMessage('<div class="alert alert-success">Room ' . $data->number . ' was created</div>');
 
-					return $this->redirect()->toRoute('manage/resource', array('controller' => 'building')); //id, blabla
+					$session = new \Zend\Session\Container('url');
+					if (isset($session->redirect)) {
+						return $this->redirect()->toUrl($session->redirect);
+					}
 				}
 			}
 		}
@@ -68,6 +70,91 @@ class RoomController extends AbstractActionController {
 		return new ViewModel(
 						array(
 							'form' => $roomForm,
+							'buildingName' => $buildingName
+						)
+		);
+	}
+
+	public function deleteAction() {
+		$roomId = $this->params('room');
+
+		if (NULL === $roomId) {
+			return $this->redirect()->toRoute('home');
+		}
+
+		$roomEntity = $this->getEntityManager()->find('ResourceMS\Entity\Room', $roomId);
+		if (NULL === $roomEntity) {
+			return $this->redirect()->toRoute('home');
+		}
+
+		$this->getEntityManager()->remove($roomEntity);
+		$this->getEntityManager()->flush();
+
+		$session = new \Zend\Session\Container('url');
+		if (isset($session->redirect)) {
+			return $this->redirect()->toUrl($session->redirect);
+		}
+		return $this->redirect()->toRoute('manage/resource', array('controller' => 'building'));
+	}
+
+	public function editAction() {
+		$roomForm = new \ResourceMS\Form\RoomForm();
+		$buildingName = $this->params('building');
+		$roomId = $this->params('room');
+
+
+		if (NULL === $roomId) {
+			return $this->redirect()->toRoute('home');
+		}
+
+		$roomEntity = $this->getEntityManager()->find('ResourceMS\Entity\Room', $roomId);
+		if (NULL === $roomEntity) {
+			return $this->redirect()->toRoute('home');
+		}
+
+		$roomData = array(
+			'number' => $roomEntity->getNumber(),
+			'description' => $roomEntity->getDescription(),
+		);
+		$roomForm->setData($roomData);
+		$roomForm->get('submit')->setValue('Done');
+
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+			$roomFilter = new \ResourceMS\Form\Filter\RoomFilter();
+
+			$roomForm->setInputFilter($roomFilter->getInputFilter());
+			$roomForm->setData($request->getPost());
+
+			if ($roomForm->isValid()) {
+				$data = $request->getPost();
+
+				$building = $this->getEntityManager()->getRepository('ResourceMS\Entity\Building')->findOneBy(array('name' => $buildingName));
+
+				var_dump($building);
+
+				if (NULL !== $building) {
+
+					$roomEntity->setBuilding($building);
+					$roomEntity->setNumber($data->number);
+					$roomEntity->setDescription($data->description);
+
+					$this->getEntityManager()->persist($roomEntity);
+					$this->getEntityManager()->flush();
+
+					$session = new \Zend\Session\Container('url');
+					if (isset($session->redirect)) {
+						return $this->redirect()->toUrl($session->redirect);
+					}
+					return $this->redirect()->toRoute('manage/resource', array('controller' => 'building'));
+				}
+			}
+		}
+
+		return new ViewModel(
+						array(
+							'form' => $roomForm,
+							'roomId' => $roomId,
 							'buildingName' => $buildingName
 						)
 		);

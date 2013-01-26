@@ -11,11 +11,18 @@
 namespace ResourceMS;
 
 use Zend\Mvc\MvcEvent;
+use Zend\Session\Config\SessionConfig;
 
 class Module {
 
 	public function onBootstrap(MvcEvent $e) {
 		$events = $e->getApplication()->getEventManager()->getSharedManager();
+		
+		$config = $e->getApplication()->getServiceManager()->get('config');
+		// configure session 
+		$sessionConfig = new SessionConfig();
+		$sessionConfig->setOptions($config['session']);
+		
 		$events->attach('ZfcUser\Service\User', 'register.post', function($e) {
 					$user = $e->getParam('user');  // User account object
 					$form = $e->getParam('form');  // Form object
@@ -23,7 +30,7 @@ class Module {
 
 					/* @var $sm ServiceLocatorInterface */
 					$sm = $e->getTarget()->getServiceManager();
-					
+
 					/* @var $em \Doctrine\ORM\EntityManager */
 					$em = $sm->get('doctrine.entitymanager.orm_default');
 

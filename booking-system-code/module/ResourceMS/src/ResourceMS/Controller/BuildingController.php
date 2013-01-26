@@ -8,15 +8,21 @@ use Zend\View\Model\ViewModel;
 class BuildingController extends AbstractActionController {
 
 	public function indexAction() {
-		$nbItemPerPage = 4;
+		$session = new \Zend\Session\Container('url');
+		$session->redirect = (string) $this->getRequest()->getRequestUri();
+		
+		$nbItemPerPage = 2;
 		$buildings = $this->getEntityManager()->getRepository('ResourceMS\Entity\Building')->findAll();
 
+		$rooms = array();
 		if (is_array($buildings)) {
 			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($buildings));
+			foreach ($buildings as $building) {
+				$rooms[$building->getId()] = $this->getEntityManager()->getRepository('ResourceMS\Entity\Room')->findBy(array('building' => $building));
+			}
 		} else {
 			$paginator = $buildings;
 		}
-
 
 		$paginator->setItemCountPerPage($nbItemPerPage);
 		$paginator->setCurrentPageNumber($this->getEvent()->getRouteMatch()->getParam('p'));
@@ -24,6 +30,7 @@ class BuildingController extends AbstractActionController {
 		return new ViewModel(
 						array(
 							'buildings' => $paginator,
+							'rooms' => $rooms,
 							'nbItemPerPage' => $nbItemPerPage,
 							'messages' => $this->flashMessenger()->getMessages(),
 						)
