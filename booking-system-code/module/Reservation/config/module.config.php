@@ -8,7 +8,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace ResourceMS;
+namespace Reservation;
 
 return array(
 	'router' => array(
@@ -19,60 +19,16 @@ return array(
 				'options' => array(
 					'route' => '/',
 					'defaults' => array(
-						'controller' => 'index',
+						'controller' => 'main',
 						'action' => 'index',
-					),
-				),
-			),
-			'manage' => array(
-				'type' => 'Zend\Mvc\Router\Http\Segment',
-				'options' => array(
-					'route' => '/manage[/]',
-					'defaults' => array(
-						'controller' => 'management',
-						'action' => 'index',
-					),
-				),
-				'may_terminate' => true,
-				'child_routes' => array(
-					'resource' => array(
-						'type' => 'Segment',
-						'options' => array(
-							'route' => '[:controller[/][:p][:action]]',
-							'constraints' => array(
-								'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-								'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-								'p' => '[\ \-0-9]+',
-							),
-						),
-					),
-					'room' => array(
-						'type' => 'Segment',
-						'options' => array(
-							'route' => 'room/in/building/[:building[/:action[/:room]]]',
-							'constraints' => array(
-								'building' => '[a-zA-Z][a-zA-Z0-9_-]*',
-								'room' => '[0-9]+',
-							),
-							'defaults' => array(
-								'controller' => 'room',
-								'action' => 'index',
-							),
-						),
 					),
 				),
 			),
 		),
 	),
-	'session' => array(
-		'save_path' => realpath(__DIR__ . '/../../../data/session'),
-	),
 	'controllers' => array(
 		'invokables' => array(
-			'index' => 'ResourceMS\Controller\IndexController',
-			'management' => 'ResourceMS\Controller\ManagementController',
-			'building' => 'ResourceMS\Controller\BuildingController',
-			'room' => 'ResourceMS\Controller\RoomController',
+			'main' => 'Reservation\Controller\MainController',
 		),
 	),
 	'service_manager' => array(
@@ -89,6 +45,9 @@ return array(
 				'pattern' => '%s.mo',
 			),
 		),
+	),
+	'session' => array(
+		'save_path' => realpath(__DIR__ . '/../../../data/session'),
 	),
 	'view_manager' => array(
 		'display_not_found_reason' => true,

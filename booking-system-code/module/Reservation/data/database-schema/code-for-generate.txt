@@ -1,0 +1,2 @@
+vendor\bin\doctrine-cli orm:convert-mapping annotation --from-database --namespace=Reservation\Entity\ module\Reservation\src --force
+vendor\bin\doctrine-cli orm:generate-entities --generate-annotations=true module\Reservation\src
