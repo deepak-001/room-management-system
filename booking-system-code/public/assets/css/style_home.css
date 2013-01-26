@@ -1,0 +1,85 @@
+body{
+	margin: auto;
+}
+.itc{
+	width: 80px; 
+	height: 80px;
+	padding: 10px 0px 0px 0px  !important;
+	float: left !important;
+	margin-left: 10px !important;
+	margin-top:15 !important;
+}
+.gic{
+	float: right;
+	width: 70px;
+	height: 70px;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+.picturemenu{
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	background-color: navy;
+}
+h1{
+	color: white !important;
+	float: bottom !important;
+	margin-bottom: 1px !important;
+    font-size: 36px !important;
+    line-height: 70px !important;
+}
+h2{
+	color: white;
+}
+.menu{
+	background-color: navy;
+	width: 200px;
+	height: 200px;
+	margin-left: 400px;
+	margin-top: 50px;
+}
+.menu1{
+	background-color: navy;
+	float: left;
+	width: 200px;
+	height: 200px;
+	margin-left: 620px;
+	margin-top: -200px;
+}
+.menu2{
+	background-color: navy;
+	width: 200px;
+	height: 200px;
+	margin-left: 840px;
+	margin-top: -200px;
+}
+.menu3{
+	background-color: navy;
+	width: 200px;
+	height: 200px;
+/*	margin-top: -2px;*/
+/*	margin-bottom: 300px;*/
+/*	margin-top: -800px;*/
+	margin-left: 840px;
+}
+div.container a.brand{
+    background: url("../images/ITC LOGO.gif") no-repeat scroll 0 10px transparent  !important;
+    margin-left: 0  !important;
+    padding: 8px 20px 12px 40px  !important;
+    float: left;  
+}
+img {
+    border: 0 none !important;
+    height: auto !important;
+    max-width: 100% !important;
+    vertical-align: middle !important;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: inherit!important;
+    font-family: inherit !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+    margin: 10px 0 !important;
+    text-rendering: optimizelegibility !important;
+}

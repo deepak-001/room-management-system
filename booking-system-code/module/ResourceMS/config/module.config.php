@@ -28,7 +28,7 @@ return array(
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'index' => 'Booking\Controller\IndexController',
+			'index' => 'ResourceMS\Controller\IndexController',
 		),
 	),
 	'service_manager' => array(
