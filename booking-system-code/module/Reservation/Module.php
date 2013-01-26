@@ -34,9 +34,7 @@ class Module {
 					/* @var $em \Doctrine\ORM\EntityManager */
 					$em = $sm->get('doctrine.entitymanager.orm_default');
 
-					$defaultRoleId = 'student';
-
-					$userRole = $em->find('ResourceMS\Entity\UserRole', $defaultRoleId);
+					$userRole = $em->find(__NAMESPACE__ . '\Entity\UserRole', DEFAULT_ROLE);
 					if (NULL !== $userRole) {
 						$user->addRole($userRole);
 						$em->persist($user);
