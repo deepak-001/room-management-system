@@ -71,9 +71,9 @@ class Item
     private $title;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="quality", type="boolean", nullable=true)
+     * @ORM\Column(name="quality", type="integer", nullable=true)
      */
     private $quality;
 
@@ -310,7 +310,7 @@ class Item
     /**
      * Set quality
      *
-     * @param boolean $quality
+     * @param integer $quality
      * @return Item
      */
     public function setQuality($quality)
@@ -323,7 +323,7 @@ class Item
     /**
      * Get quality
      *
-     * @return boolean 
+     * @return integer 
      */
     public function getQuality()
     {

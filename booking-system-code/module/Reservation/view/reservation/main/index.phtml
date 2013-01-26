@@ -1,1 +1,26 @@
-MAIN INDEX
+<a href="<?php echo $this->url('home/default', array('controller' => 'reservation', 'action' => 'start')); ?>">Make a reservation</a>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Type</th>
+			<th>Quality</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+		foreach ($items as $item) {
+			echo '<tr>';
+			echo '<td>' . $item->getTitle() . '</td>';
+			if (NULL !== $item->getType()) {
+				echo '<td>' . $item->getType()->getTitle() . '</td>';
+			} else {
+				echo '<td></td>';
+			}
+			echo '<td>' . $item->getQuality() . '</td>';
+			echo '</tr>';
+		}
+		?>
+	</tbody>
+</table>
