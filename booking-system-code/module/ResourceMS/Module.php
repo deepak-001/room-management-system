@@ -22,11 +22,12 @@ class Module {
 					// Perform your custom action here
 
 					/* @var $sm ServiceLocatorInterface */
-					$sm = $e->getParam('ServiceManager');
+					$sm = $e->getTarget()->getServiceManager();
+					
 					/* @var $em \Doctrine\ORM\EntityManager */
 					$em = $sm->get('doctrine.entitymanager.orm_default');
 
-					$defaultRoleId = 1;
+					$defaultRoleId = 'student';
 
 					$userRole = $em->find('ResourceMS\Entity\UserRole', $defaultRoleId);
 					if (NULL !== $userRole) {
