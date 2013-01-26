@@ -24,11 +24,36 @@ return array(
 					),
 				),
 			),
+			'manage' => array(
+				'type' => 'Zend\Mvc\Router\Http\Segment',
+				'options' => array(
+					'route' => '/manage[/]',
+					'defaults' => array(
+						'controller' => 'management',
+						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'resource' => array(
+						'type' => 'Segment',
+						'options' => array(
+							'route' => '[:controller[/:action]]',
+							'constraints' => array(
+								'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+								'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+							),
+						),
+					),
+				),
+			),
 		),
 	),
 	'controllers' => array(
 		'invokables' => array(
 			'index' => 'ResourceMS\Controller\IndexController',
+			'management' => 'ResourceMS\Controller\ManagementController',
+			'building' => 'ResourceMS\Controller\BuildingController',
 		),
 	),
 	'service_manager' => array(
@@ -56,7 +81,6 @@ return array(
 			'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
 			'error/404' => __DIR__ . '/../view/error/404.phtml',
 			'error/index' => __DIR__ . '/../view/error/index.phtml',
-			
 			'zfcuser/login' => __DIR__ . '/../view/zfcuser/login.phtml',
 		),
 		'template_path_stack' => array(

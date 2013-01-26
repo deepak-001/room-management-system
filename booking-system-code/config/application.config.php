@@ -10,6 +10,7 @@ return array(
 		'ZfcUserDoctrineORM',
 		'ZfcAdmin',
 		'ZfcUserAdmin',
+		'Booking',
 		'ResourceMS',
 	),
 	'module_listener_options' => array(
