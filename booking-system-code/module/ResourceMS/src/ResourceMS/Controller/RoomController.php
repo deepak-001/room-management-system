@@ -35,6 +35,12 @@ class RoomController extends AbstractActionController {
 		$roomForm = new \ResourceMS\Form\RoomForm();
 		$buildingName = $this->params('building');
 
+		$building = $this->getEntityManager()->getRepository('ResourceMS\Entity\Building')->findOneBy(array('name' => $buildingName));
+		
+		if(NULL === $building){
+			return $this->redirect()->toRoute('manage/resource',array('controller'=>'building'));
+		}
+		
 		$request = $this->getRequest();
 		if ($request->isPost()) {
 			$roomFilter = new \ResourceMS\Form\Filter\RoomFilter();
@@ -46,7 +52,6 @@ class RoomController extends AbstractActionController {
 				$data = $request->getPost();
 
 				$room = new \ResourceMS\Entity\Room();
-				$building = $this->getEntityManager()->getRepository('ResourceMS\Entity\Building')->findOneBy(array('name' => $buildingName));
 
 				if (NULL !== $building) {
 

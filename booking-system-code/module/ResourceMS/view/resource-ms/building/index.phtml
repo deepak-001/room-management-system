@@ -4,6 +4,10 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 
+<a href="<?php echo $this->url('manage/resource',array('action'=>'create','controller'=>'building')) ?>" class="btn">New building</a>
+
+<br /><br />
+
 <?php
 foreach ($buildings as $building) {
 	echo '<div class="well">';
