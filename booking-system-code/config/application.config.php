@@ -1,7 +1,7 @@
 <?php
+
 return array(
-    'modules' => array(
-	
+	'modules' => array(
 		'ZfcBase',
 		'ZfcUser',
 		'BjyAuthorize',
@@ -10,15 +10,15 @@ return array(
 		'ZfcUserDoctrineORM',
 		'ZfcAdmin',
 		'ZfcUserAdmin',
-		'Booking',
-    ),
-    'module_listener_options' => array(
-        'config_glob_paths'    => array(
-            'config/autoload/{,*.}{global,local}.php',
-        ),
-        'module_paths' => array(
-            './module',
-            './vendor',
-        ),
-    ),
+		'ResourceMS',
+	),
+	'module_listener_options' => array(
+		'config_glob_paths' => array(
+			'config/autoload/{,*.}{global,local}.php',
+		),
+		'module_paths' => array(
+			'./module',
+			'./vendor',
+		),
+	),
 );
