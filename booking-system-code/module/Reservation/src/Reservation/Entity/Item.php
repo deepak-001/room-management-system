@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Item
  *
  * @ORM\Table(name="item")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Reservation\Repository\ItemRepository")
  */
 class Item
 {
@@ -69,6 +69,13 @@ class Item
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="quality", type="boolean", nullable=true)
+     */
+    private $quality;
 
     /**
      * @var string
@@ -298,6 +305,29 @@ class Item
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set quality
+     *
+     * @param boolean $quality
+     * @return Item
+     */
+    public function setQuality($quality)
+    {
+        $this->quality = $quality;
+    
+        return $this;
+    }
+
+    /**
+     * Get quality
+     *
+     * @return boolean 
+     */
+    public function getQuality()
+    {
+        return $this->quality;
     }
 
     /**

@@ -88,27 +88,6 @@ CREATE TABLE IF NOT EXISTS `image` (
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `quality` (
-  `uid` int(11) unsigned AUTO_INCREMENT,
-  `disabled` tinyint(1) unsigned DEFAULT '0',
-  `deleted` tinyint(1) unsigned DEFAULT '0',
-  `created_time` int(11) unsigned DEFAULT '0',
-  `created_user` int(11) unsigned DEFAULT '0',
-  `last_modified_time` int(11) unsigned DEFAULT '0',
-  `last_modified_user` int(11) unsigned DEFAULT '0',
-  `valid_time_start` int(11) unsigned DEFAULT '0',
-  `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
-
-  `title` varchar(255) DEFAULT '',
-  `value`  tinyint(4) unsigned DEFAULT '0',
-  `description` text,
-
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
-
 CREATE TABLE IF NOT EXISTS `type` (
   `uid` int(11) unsigned AUTO_INCREMENT,
   `parent` int(11) unsigned DEFAULT '0',
@@ -149,7 +128,8 @@ CREATE TABLE IF NOT EXISTS `item` (
   FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
 
   `title` varchar(255) DEFAULT '',
-  `type`  int(11) unsigned DEFAULT '0',
+  `type` int(11) unsigned DEFAULT '0',
+  `quality` tinyint(3) unsigned DEFAULT '0',
   `icon`  int(11) unsigned DEFAULT '0',
   `description` text,
 
@@ -176,6 +156,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `end_time` int(11) unsigned DEFAULT '0',
   `user`  int(11) unsigned DEFAULT '0',
   `item`  int(11) unsigned DEFAULT '0',
+  `returned` tinyint(1) unsigned DEFAULT '0',
   `feedback` text,
 
   FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ,

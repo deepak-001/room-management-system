@@ -78,6 +78,13 @@ class Reservation
     private $endTime;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="returned", type="boolean", nullable=true)
+     */
+    private $returned;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="feedback", type="text", nullable=true)
@@ -318,6 +325,29 @@ class Reservation
     public function getEndTime()
     {
         return $this->endTime;
+    }
+
+    /**
+     * Set returned
+     *
+     * @param boolean $returned
+     * @return Reservation
+     */
+    public function setReturned($returned)
+    {
+        $this->returned = $returned;
+    
+        return $this;
+    }
+
+    /**
+     * Get returned
+     *
+     * @return boolean 
+     */
+    public function getReturned()
+    {
+        return $this->returned;
     }
 
     /**

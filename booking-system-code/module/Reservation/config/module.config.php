@@ -24,11 +24,37 @@ return array(
 					),
 				),
 			),
+			'admin' => array(
+				'type' => 'Segment',
+				'options' => array(
+					'route' => '/admin[/]',
+					'defaults' => array(
+						'controller' => 'main',
+						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'default' => array(
+						'type' => 'Segment',
+						'options' => array(
+							'route' => '[:controller[/:action[/:uid]]]',
+							'constraints' => array(
+								'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+								'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+								'uid' => '[0-9]+',
+							),
+						),
+					),
+				),
+			),
 		),
 	),
 	'controllers' => array(
 		'invokables' => array(
 			'main' => 'Reservation\Controller\MainController',
+			'type' => 'Reservation\Controller\TypeController',
+			'item' => 'Reservation\Controller\ItemController',
 		),
 	),
 	'service_manager' => array(

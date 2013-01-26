@@ -7,3 +7,8 @@ form dd label span {
 	display: inline-block;
 	width: 180px;
 }
+
+form dd label.auto {
+	display: inline-block;
+	width: 180px;
+}
