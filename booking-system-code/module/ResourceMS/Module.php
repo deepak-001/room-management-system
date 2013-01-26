@@ -10,16 +10,33 @@
 
 namespace ResourceMS;
 
-use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Booking\Model\UsersTable;
-use Zend\Db\ResultSet\ResultSet;
-use Booking\Model\Users;
-use Zend\Db\TableGateway\TableGateway;
-use Booking\Model\Rooms;
-use Booking\Model\RoomsTable;
 
 class Module {
+
+	public function onBootstrap(MvcEvent $e) {
+		$events = $e->getApplication()->getEventManager()->getSharedManager();
+		$events->attach('ZfcUser\Service\User', 'register.post', function($e) {
+					$user = $e->getParam('user');  // User account object
+					$form = $e->getParam('form');  // Form object
+					// Perform your custom action here
+
+					/* @var $sm ServiceLocatorInterface */
+					$sm = $e->getParam('ServiceManager');
+					/* @var $em \Doctrine\ORM\EntityManager */
+					$em = $sm->get('doctrine.entitymanager.orm_default');
+
+					$defaultRoleId = 1;
+
+					$userRole = $em->find('ResourceMS\Entity\UserRole', $defaultRoleId);
+					if (NULL !== $userRole) {
+						$user->addRole($userRole);
+						$em->persist($user);
+						$em->flush();
+					}
+				}
+		);
+	}
 
 	public function getConfig() {
 		return include __DIR__ . '/config/module.config.php';

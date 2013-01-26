@@ -60,7 +60,7 @@ return array(
 			'zfcuser/login' => __DIR__ . '/../view/zfcuser/login.phtml',
 		),
 		'template_path_stack' => array(
-			__DIR__ . '/../view',
+			'resourcems' => __DIR__ . '/../view',
 			'zfcuser' => __DIR__ . '/../view',
 		),
 	),
