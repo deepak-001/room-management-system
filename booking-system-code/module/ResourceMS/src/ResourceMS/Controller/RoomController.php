@@ -5,7 +5,7 @@ namespace ResourceMS\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class BuildingController extends AbstractActionController {
+class RoomController extends AbstractActionController {
 
 	public function indexAction() {
 		$nbItemPerPage = 4;
@@ -31,34 +31,44 @@ class BuildingController extends AbstractActionController {
 	}
 
 	public function createAction() {
-		$buildingForm = new \ResourceMS\Form\BuildingForm();
-
+		$roomForm = new \ResourceMS\Form\RoomForm();
+		$buildingName = $this->params('building');
+		
 		$request = $this->getRequest();
 		if ($request->isPost()) {
-			$buildingFilter = new \ResourceMS\Form\Filter\BuildingFilter($this->getServiceLocator()->get('db'));
+			$roomFilter = new \ResourceMS\Form\Filter\RoomFilter();
 
-			$buildingForm->setInputFilter($buildingFilter->getInputFilter());
-			$buildingForm->setData($request->getPost());
+			$roomForm->setInputFilter($roomFilter->getInputFilter());
+			$roomForm->setData($request->getPost());
 
-			if ($buildingForm->isValid()) {
+			if ($roomForm->isValid()) {
 				$data = $request->getPost();
 
-				$building = new \ResourceMS\Entity\Building();
-				$building->setName($data->name);
-				$building->setDescription($data->description);
+				$room = new \ResourceMS\Entity\Room();
+				$building = $this->getEntityManager()->getRepository('ResourceMS\Entity\Building')->findOneBy(array('name' => $buildingName));
 
-				$this->getEntityManager()->persist($building);
-				$this->getEntityManager()->flush();
+				var_dump($building);
+				
+				if (NULL !== $building) {
 
-				$this->flashMessenger()->addMessage('<div class="alert alert-success">Buiding ' . $data->name . ' was created</div>');
+					$room->setBuilding($building);
+					$room->setNumber($data->number);
+					$room->setDescription($data->description);
 
-				return $this->redirect()->toRoute('manage/resource', array('controller' => 'building')); //id, blabla
+					$this->getEntityManager()->persist($room);
+					$this->getEntityManager()->flush();
+
+					$this->flashMessenger()->addMessage('<div class="alert alert-success">Room ' . $data->number . ' was created</div>');
+
+					return $this->redirect()->toRoute('manage/resource', array('controller' => 'building')); //id, blabla
+				}
 			}
 		}
 
 		return new ViewModel(
 						array(
-							'form' => $buildingForm,
+							'form' => $roomForm,
+							'buildingName' => $buildingName
 						)
 		);
 	}

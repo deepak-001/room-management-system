@@ -38,10 +38,24 @@ return array(
 					'resource' => array(
 						'type' => 'Segment',
 						'options' => array(
-							'route' => '[:controller[/:action]]',
+							'route' => '[:controller[/][:p][:action]]',
 							'constraints' => array(
 								'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
 								'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+								'p' => '[\ \-0-9]+',
+							),
+						),
+					),
+					'room' => array(
+						'type' => 'Segment',
+						'options' => array(
+							'route' => 'room/in/building/[:building[/:action]]',
+							'constraints' => array(
+								'building' => '[a-zA-Z][a-zA-Z0-9_-]*',
+							),
+							'defaults' => array(
+								'controller' => 'room',
+								'action' => 'index',
 							),
 						),
 					),
@@ -54,6 +68,7 @@ return array(
 			'index' => 'ResourceMS\Controller\IndexController',
 			'management' => 'ResourceMS\Controller\ManagementController',
 			'building' => 'ResourceMS\Controller\BuildingController',
+			'room' => 'ResourceMS\Controller\RoomController',
 		),
 	),
 	'service_manager' => array(
