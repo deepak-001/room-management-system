@@ -78,6 +78,13 @@ class Item
     private $quality;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_bookable", type="boolean", nullable=true)
+     */
+    private $isBookable;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
@@ -328,6 +335,29 @@ class Item
     public function getQuality()
     {
         return $this->quality;
+    }
+
+    /**
+     * Set isBookable
+     *
+     * @param boolean $isBookable
+     * @return Item
+     */
+    public function setIsBookable($isBookable)
+    {
+        $this->isBookable = $isBookable;
+    
+        return $this;
+    }
+
+    /**
+     * Get isBookable
+     *
+     * @return boolean 
+     */
+    public function getIsBookable()
+    {
+        return $this->isBookable;
     }
 
     /**

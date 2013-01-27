@@ -37,7 +37,7 @@ class ItemForm extends Form {
 				'id' => 'parent'
 			),
 		));
-		
+
 		$this->add(array(
 			'name' => 'type',
 			'type' => '\Zend\Form\Element\Text',
@@ -54,6 +54,17 @@ class ItemForm extends Form {
 		));
 
 		$this->add(array(
+			'name' => 'bookable',
+			'type' => '\Zend\Form\Element\Checkbox',
+			'options' => array(
+				'label' => 'Bookalbe',
+			),
+			'attributes' => array(
+			),
+		));
+
+
+		$this->add(array(
 			'name' => 'quality',
 			'type' => '\Zend\Form\Element\Text',
 			'options' => array(
@@ -63,7 +74,7 @@ class ItemForm extends Form {
 				'placeholder' => 'Quality',
 			),
 		));
-		
+
 		$this->add(array(
 			'name' => 'description',
 			'type' => '\Zend\Form\Element\Textarea',

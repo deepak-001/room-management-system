@@ -16,12 +16,14 @@ class ItemController extends AbstractActionController {
 	private $settersPostData = array(
 		'setTitle' => 'title',
 		'setQuality' => 'quality',
+		'setIsBookable' => 'bookable',
 		'setDescription' => 'description',
 	);
 	private $entityDataMatchFormName = array(
 		'title' => 'getTitle',
 		'quality' => 'getQuality',
 		'parent' => 'getParent',
+		'bookable' => 'getIsBookable',
 		'type' => 'getType',
 		'description' => 'getDescription',
 		'submit' => 'Done',
@@ -128,6 +130,8 @@ class ItemController extends AbstractActionController {
 			}
 			$form->setData($formData);
 		}
+		
+		$form->get('submit')->setValue('Done');
 
 		$request = $this->getRequest();
 		if ($request->isPost()) {
