@@ -24,7 +24,22 @@
 			} else {
 				echo '<td></td>';
 			}
-			echo '<td>' . $item->getQuality() . '</td>';
+
+			$barType = 'bar-success';
+
+			if ($item->getQuality() > 70) {
+				$barType = 'bar-success';
+			} else if ($item->getQuality() > 40) {
+				$barType = 'bar-warning';
+			} else if ($item->getQuality() > 0) {
+				$barType = 'bar-danger';
+			}
+
+			echo '<td>
+					<div class="progress progress-striped">
+						<div class="bar ' . $barType . '" style="width: ' . $item->getQuality() . '%;"></div>
+					</div>
+				</td>';
 
 			echo '<td>';
 			echo '<button value="' . $item->getUid() . '" class="btn bookButton" href="#">Book</button>';
