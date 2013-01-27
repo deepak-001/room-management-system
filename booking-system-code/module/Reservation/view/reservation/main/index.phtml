@@ -42,7 +42,10 @@
 				</td>';
 
 			echo '<td>';
-			echo '<button value="' . $item->getUid() . '" class="btn bookButton" href="#">Book</button>';
+
+			if ($item->getIsBookable()) {
+				echo '<button value="' . $item->getUid() . '" class="btn bookButton" href="#">Book</button>';
+			}
 			echo '<a class="btn" href="' . $this->url('admin/default', array('controller' => 'item', 'action' => 'edit', 'uid' => $item->getUid())) . '">Edit</a>';
 			echo '</td>';
 

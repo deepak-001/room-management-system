@@ -129,7 +129,8 @@ CREATE TABLE IF NOT EXISTS `item` (
 
   `title` varchar(255) DEFAULT '',
   `type` int(11) unsigned DEFAULT '0',
-  `quality` tinyint(3) unsigned DEFAULT '0',
+  `quality` int(11) unsigned DEFAULT '0',
+  `is_bookable` tinyint(1) unsigned DEFAULT '0',
   `icon`  int(11) unsigned DEFAULT '0',
   `description` text,
 
