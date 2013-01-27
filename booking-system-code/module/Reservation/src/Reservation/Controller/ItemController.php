@@ -80,6 +80,7 @@ class ItemController extends AbstractActionController {
 				}
 
 				$settersData['setParent'] = $this->getEntityManager()->getRepository($this->classMap['entityClass'])->findOneBy(array('title' => $data->parent));
+				$settersData['setType'] = $this->getEntityManager()->getRepository($this->classMap['entityRelationClass'])->findOneBy(array('title' => $data->type));
 				foreach ($settersData as $method => $value) {
 					$entity->{$method}($value);
 				}

@@ -52,11 +52,14 @@ return array(
 					'default' => array(
 						'type' => 'Segment',
 						'options' => array(
-							'route' => '[:controller[/:action[/:uid]]]',
+							'route' => '[:controller[/][:action[/:uid]]]',
 							'constraints' => array(
 								'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
 								'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
 								'uid' => '[0-9]+',
+							),
+							'defaults' => array(
+								'action' => 'index',
 							),
 						),
 					),
@@ -70,6 +73,7 @@ return array(
 			'type' => 'Reservation\Controller\TypeController',
 			'item' => 'Reservation\Controller\ItemController',
 			'reservation' => 'Reservation\Controller\ReservationController',
+			'calendar' => 'Reservation\Controller\CalendarController',
 		),
 	),
 	'service_manager' => array(

@@ -35,7 +35,28 @@ class ItemFilter implements InputFilterAwareInterface {
 									array('name' => 'StringTrim'),
 								),
 								'validators' => array(
-									
+								),
+							)
+					)
+			);
+
+			$inputFilter->add($factory->createInput(
+							array(
+								'name' => 'parent',
+								'required' => TRUE,
+								'filters' => array(
+									array('name' => 'StripTags'),
+									array('name' => 'StringTrim'),
+								),
+								'validators' => array(
+									array(
+										'name' => 'Db\RecordExists',
+										'options' => array(
+											'table' => 'item',
+											'field' => 'title',
+											'adapter' => $this->adapter,
+										)
+									)
 								),
 							)
 					)
@@ -61,11 +82,11 @@ class ItemFilter implements InputFilterAwareInterface {
 							)
 					)
 			);
-			
+
 			$inputFilter->add($factory->createInput(
 							array(
 								'name' => 'type',
-								'required' => false,
+								'required' => TRUE,
 								'filters' => array(
 									array('name' => 'StripTags'),
 									array('name' => 'StringTrim'),
