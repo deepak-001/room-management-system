@@ -10,11 +10,11 @@ class CalendarController extends AbstractActionController {
 	public function datafeedlistAction() {
 
 		$reservation = array();
-		$reservationEntities = $this->getEntityManager()->getRepository('Reservation\Entity\Reservation')->findBy(array('user' => $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity()));
+		$reservationEntities = $this->getEntityManager()->getRepository('Reservation\Entity\Reservation')->findAll();
 		foreach ($reservationEntities as $entity) {
 			$reservation['events'][] = array(
 				$entity->getUid(),
-				$entity->getItem()->getTitle(),
+				$entity->getItem()->getTitle() . ' ' . $entity->getUser()->getUsername(),
 				date('m/d/Y H:i', $entity->getStartTime()),
 				date('m/d/Y H:i', $entity->getEndTime()),
 			);

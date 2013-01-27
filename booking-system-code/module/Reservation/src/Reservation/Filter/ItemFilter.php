@@ -43,7 +43,7 @@ class ItemFilter implements InputFilterAwareInterface {
 			$inputFilter->add($factory->createInput(
 							array(
 								'name' => 'parent',
-								'required' => TRUE,
+								'required' => FALSE,
 								'filters' => array(
 									array('name' => 'StripTags'),
 									array('name' => 'StringTrim'),
