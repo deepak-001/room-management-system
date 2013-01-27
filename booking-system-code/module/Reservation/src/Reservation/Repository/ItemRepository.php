@@ -18,6 +18,18 @@ class ItemRepository extends EntityRepository {
 		return $result;
 	}
 
+	public function findByUids($uids) {
+		$em = $this->getEntityManager();
+		$query = $em->createQueryBuilder();
+
+		$in = $query->expr()->in('i.uid', $uids);
+		$query->select('i')
+				->from('Reservation\Entity\Item', 'i')
+				->where($in);
+
+		return $query->getQuery()->getResult();
+	}
+
 }
 
 ?>

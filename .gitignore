@@ -3,3 +3,5 @@
 /nbproject/project.xml
 /booking-system/vendor
 vendor
+*.php~
+local.php

@@ -28,6 +28,7 @@ class ReservationTimeForm extends Form {
 			),
 			'attributes' => array(
 				'class' => 'date',
+				'id' => 'startDate',
 			),
 		));
 
@@ -51,6 +52,7 @@ class ReservationTimeForm extends Form {
 			),
 			'attributes' => array(
 				'class' => 'date',
+				'id' => 'endDate',
 			),
 		));
 

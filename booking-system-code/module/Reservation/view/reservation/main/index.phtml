@@ -6,6 +6,7 @@
 			<th>Title</th>
 			<th>Type</th>
 			<th>Quality</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,8 +20,51 @@
 				echo '<td></td>';
 			}
 			echo '<td>' . $item->getQuality() . '</td>';
+
+			echo '<td>';
+			echo '<button value="' . $item->getUid() . '" class="btn bookButton" href="#">Book</button>';
+			echo '<a class="btn" href="' . $this->url('admin/default', array('controller' => 'item', 'action' => 'edit', 'uid' => $item->getUid())) . '">Edit</a>';
+			echo '</td>';
+
 			echo '</tr>';
 		}
 		?>
 	</tbody>
 </table>
+
+<button id="clearItems" class="btn">Clear</button>
+<button class="btn bookButton" value="0">View Items</button>
+<a class="btn" href="<?php echo $this->url('home/default', array('controller' => 'reservation', 'action' => 'done')); ?>">Finish</a>
+
+<div id="items">
+
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('.bookButton').click(function(){
+			var itemUid = jQuery(this).val();
+			
+			jQuery.ajax({
+				url: "<?php echo $this->url('home/default', array('controller' => 'reservation', 'action' => 'book')) ?>",
+				type: "POST",
+				data: {"itemUid": itemUid},
+				complete: function(){
+					
+				},
+				success: function(data){
+					jQuery('#items').html(data);
+				}
+			});
+			
+		});
+		jQuery('#clearItems').click(function(){
+			jQuery.ajax({
+				url: "<?php echo $this->url('home/default', array('controller' => 'reservation', 'action' => 'clear')) ?>",
+				success: function(data){
+					jQuery('#items').html(data);
+				}
+			});
+		});
+	});
+</script>

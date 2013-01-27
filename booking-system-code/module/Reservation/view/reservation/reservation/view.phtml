@@ -1,0 +1,10 @@
+<?php
+
+foreach ($reservation as $oneItemReservation) {
+	echo $oneItemReservation->getItem()->getType()->getTitle() . '<br />';
+	echo $oneItemReservation->getItem()->getTitle() . '<br />';
+	echo 'from : ' . date('d/m/y H:i', $oneItemReservation->getStartTime()) . ' to ' . date('d/m/y H:i', $oneItemReservation->getEndTime());
+
+	echo '<br /><br />';
+}
+?>

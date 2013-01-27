@@ -13,7 +13,11 @@ $form->setAttribute('method', 'post');
 <?php echo $this->form()->closeTag() ?>
 
 <script type="text/javascript">
-	$('.date').datepicker({
-		
+	$('#startDate').datepicker({
+		minDate: 0,
+		altField: "#endDate"
+	});
+	$('#endDate').datepicker({
+		minDate: 0
 	});
 </script>

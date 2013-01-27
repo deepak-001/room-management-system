@@ -1,0 +1,11 @@
+<div class="well">
+	<?php
+	foreach ($items as $typeTitle => $itemsArray) {
+		echo $typeTitle . '<br />';
+		foreach ($itemsArray as $item) {
+			echo $item->getTitle() . ' ';
+		}
+		echo '<br />';
+	}
+	?>
+</div>

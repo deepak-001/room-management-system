@@ -10,9 +10,6 @@ class MainController extends AbstractActionController {
 	public function indexAction() {
 		$session = new \Zend\Session\Container('time');
 
-		var_dump($session->start);
-		var_dump($session->end);
-
 		$items = $this->getEntityManager()->getRepository('Reservation\Entity\Item')->findAll();
 
 		return new ViewModel(
