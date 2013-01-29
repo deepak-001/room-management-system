@@ -1,0 +1,91 @@
+<?php if (count($messages)) : ?>
+	<?php foreach ($messages as $msg) : ?>
+		<?php echo $msg; ?>
+	<?php endforeach; ?>
+<?php endif; ?>
+
+<form onsubmit="return checkValue();" method="post" action="<?php echo $this->url('admin/default', array('controller' => 'item', 'action' => 'new')); ?>">
+	<input type="submit" class="btn" value="Create new"/>
+	<select name="type" id="typeOfItem" class="select">
+		<?php
+		foreach ($types as $uid => $title) {
+			echo '<option value="' . $uid . '">' . $title . '</option>';
+		}
+		?>
+	</select>
+</form>
+
+<div class="pull-right">
+	<span class="label">Filter by :</span>
+	<select id="types" class="select">
+		<option value="0"></option>
+		<option value="">List all</option>
+		<?php
+		foreach ($types as $uid => $title) {
+			echo '<option value="' . $uid . '">' . $title . '</option>';
+		}
+		?>
+	</select>
+</div>
+
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Type</th>
+			<th>Parent</th>
+			<th>Bookable</th>
+			<th>Description</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+		foreach ($items as $item) {
+			echo '<tr>';
+			echo '<td>' . $item->getUid() . '</td>';
+			echo '<td>' . $item->getTitle() . '</td>';
+			if (NULL !== $item->getType()) {
+				echo '<td>' . $item->getType()->getTitle() . '</td>';
+			} else {
+				echo '<td></td>';
+			}
+			if (NULL !== $item->getParent()) {
+				echo '<td>' . $item->getParent()->getType()->getTitle() . " : " . $item->getParent()->getTitle() . '</td>';
+			} else {
+				echo '<td></td>';
+			}
+			echo '<td>' . $item->getIsBookable() . '</td>';
+			echo '<td>' . $item->getDescription() . '</td>';
+			?>
+		<td>
+			<div class="btn-group">
+				<a href="<?php echo $this->url('admin/default', array('controller' => 'item', 'action' => 'edit', 'uid' => $item->getUid())) ?>" class="btn">Edit</a>
+				<a href="<?php echo $this->url('admin/default', array('controller' => 'item', 'action' => 'delete', 'uid' => $item->getUid())) ?>" class="btn">Delete</a>
+			</div>
+		</td>
+		<?php
+		echo '</tr>';
+	}
+	?>
+</tbody>
+</table>
+
+<script type="text/javascript">
+	function checkValue(){
+		if(0 == jQuery('#typeOfItem').val()){
+			return false;
+		}
+		return true;
+	}
+	jQuery(document).ready(function(){
+		jQuery(".select").chosen({allow_single_deselect: true});
+		jQuery('#types').change(function(){
+			var url = "<?php echo $this->url('admin/default', array('controller' => 'item', 'action' => 'list')) ?>" + jQuery(this).val();
+			window.location = url;
+			//			console.log(jQuery(this).val());
+		});
+	});
+</script>

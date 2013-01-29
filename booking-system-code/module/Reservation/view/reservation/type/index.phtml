@@ -1,1 +1,40 @@
-<a class="btn" href="<?php echo $this->url('admin/default',array('controller'=>'type','action'=>'create')) ?>">Create new type</a>
+<a class="btn" href="<?php echo $this->url('admin/default', array('controller' => 'type', 'action' => 'create')) ?>">Create new type</a>
+
+<br /><br />
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Parent</th>
+			<th>Description</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+		foreach ($types as $item) {
+			echo '<tr>';
+			echo '<td>' . $item->getUid() . '</td>';
+			echo '<td>' . $item->getTitle() . '</td>';
+			if (NULL !== $item->getParent()) {
+				echo '<td>' . $item->getParent()->getTitle() . '</td>';
+			} else {
+				echo '<td></td>';
+			}
+			echo '<td>' . $item->getDescription() . '</td>';
+			?>
+		<td>
+			<div class="btn-group">
+				<a href="<?php echo $this->url('admin/default', array('controller' => 'item', 'action' => 'create', 'uid' => $item->getUid())) ?>" class="btn">New Item</a>
+				<a href="<?php echo $this->url('admin/default', array('controller' => 'type', 'action' => 'edit', 'uid' => $item->getUid())) ?>" class="btn">Edit</a>
+				<a href="<?php echo $this->url('admin/default', array('controller' => 'type', 'action' => 'delete', 'uid' => $item->getUid())) ?>" class="btn">Delete</a>
+			</div>
+		</td>
+		<?php
+		echo '</tr>';
+	}
+	?>
+</tbody>
+</table>

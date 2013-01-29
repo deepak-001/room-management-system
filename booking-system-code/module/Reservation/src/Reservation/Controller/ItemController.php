@@ -209,7 +209,9 @@ class ItemController extends AbstractActionController {
 		}
 
 		$form->get('submit')->setValue('Done');
-
+		if (NULL !== $entity->getType()) {
+			$form->get('type')->setValue($entity->getType()->getUid());
+		}
 		$request = $this->getRequest();
 		if ($request->isPost()) {
 			$filter = new $this->classMap['filterClass']($this->getServiceLocator()->get('db'));
@@ -246,12 +248,36 @@ class ItemController extends AbstractActionController {
 			}
 		}
 
+		$viewModel = new ViewModel(array(
+					'form' => $form,
+					'uid' => $entityUid,
+					'item' => $entity,
+					'messages' => $this->flashMessenger()->getMessages(),
+					'types' => $this->getEntityManager()->getRepository($this->classMap['entityRelationClass'])->findAllTitleInArray(),
+					'items' => $this->getEntityManager()->getRepository($this->classMap['entityClass'])->findAllTitleInArray(),
+						)
+		);
+		$viewModel->setTemplate('reservation/item/create');
+
+		return $viewModel;
+	}
+
+	public function listAction() {
+		$typeUid = $this->params('uid');
+		$items = NULL;
+		if (NULL === $typeUid) {
+			$items = $this->getEntityManager()->getRepository('Reservation\Entity\Item')->findAll();
+		} else {
+			$items = $this->getEntityManager()->getRepository('Reservation\Entity\Item')->findBy(array(
+				'type' => $typeUid
+					));
+		}
+
 		return new ViewModel(
 						array(
-							'form' => $form,
-							'uid' => $entityUid,
-							'types' => $this->getEntityManager()->getRepository($this->classMap['entityRelationClass'])->findAllTitleInArray(),
-							'items' => $this->getEntityManager()->getRepository($this->classMap['entityClass'])->findAllTitleInArray(),
+							'items' => $items,
+							'types' => $this->getEntityManager()->getRepository('Reservation\Entity\Type')->findArrayForSelectOption(),
+							'messages' => $this->flashMessenger()->getMessages(),
 						)
 		);
 	}

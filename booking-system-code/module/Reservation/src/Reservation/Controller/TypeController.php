@@ -38,9 +38,10 @@ class TypeController extends AbstractActionController {
 	);
 
 	public function indexAction() {
-
+		$types = $this->getEntityManager()->getRepository('Reservation\Entity\Type')->findAll();
 		return new ViewModel(
 						array(
+							'types' => $types
 						)
 		);
 	}
