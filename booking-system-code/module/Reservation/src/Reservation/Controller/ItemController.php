@@ -47,8 +47,26 @@ class ItemController extends AbstractActionController {
 
 		return new ViewModel(
 						array(
+							'types' => $this->getEntityManager()->getRepository('Reservation\Entity\Type')->findArrayForSelectOption(),
+							'messages' => $this->flashMessenger()->getMessages(),
 						)
 		);
+	}
+
+	public function newAction() {
+		if ($this->getRequest()->isPost()) {
+			$postData = $this->getRequest()->getPost();
+			$type = $this->getEntityManager()->find('Reservation\Entity\Type', $postData->type);
+			if (NULL != $type) {
+				$routeOptions = array(
+					'controller' => 'Item',
+					'action' => 'create',
+					'uid' => $postData->type,
+				);
+				return $this->redirect()->toRoute('admin/default', $routeOptions);
+			}
+		}
+		return new ViewModel();
 	}
 
 	public function createAction() {
@@ -64,41 +82,100 @@ class ItemController extends AbstractActionController {
 
 
 		$form = new $this->classMap['formClass']();
+		$typeUid = $this->params('uid');
+		$typeEntity = NULL;
+		$parentType = NULL;
+		$typeUidToView = 0;
+
+		if (NULL !== $typeUid) {
+			$typeUidToView = $typeUid;
+			$form->get('type')->setValue($typeUid);
+
+			$typeEntity = $this->getEntityManager()->find('Reservation\Entity\Type', $typeUid);
+
+			if (NULL !== $typeEntity) {
+				$parentType = $typeEntity->getParent();
+				if (NULL !== $parentType) {
+					$optionValues = array(
+						0 => '',
+						array(
+							'label' => $parentType->getTitle(),
+							'options' => $this->getEntityManager()->getRepository('Reservation\Entity\Item')->findArrayForSelectOption($typeEntity->getParent()->getUid())
+						)
+					);
+
+					$form->get('parent')->setValueOptions(
+							$optionValues
+					);
+				}
+			}
+		} else if (NULL === $typeEntity && !$this->getRequest()->isPost()) {
+			$this->flashMessenger()->addMessage('<div class="alert alert-error">Select type first</div>');
+			return $this->redirect()->toRoute('admin/default', array('controller' => 'item'));
+		}
 
 		$request = $this->getRequest();
 		if ($request->isPost()) {
+			$data = $request->getPost();
+
+
+
 			$filter = new $this->classMap['filterClass']($this->getServiceLocator()->get('db'));
 
-			$form->setInputFilter($filter->getInputFilter());
-			$form->setData($request->getPost());
+//			$form->setInputFilter($filter->getInputFilter());
 
-			if ($form->isValid()) {
-				$data = $request->getPost();
+			$form->setData($data);
 
-				$entity = new $this->classMap['entityClass']();
+			if (!$data->type) {
+				$this->flashMessenger()->addMessage('<div class="alert alert-error">Select type first</div>');
+				return $this->redirect()->toRoute('admin/default', array('controller' => 'item'));
+			} else {
+				$typeUidToView = $data->type;
+			}
 
-				foreach ($this->settersPostData as $method => $postName) {
-					$entity->{$method}($data->{$postName});
-				}
+//			if ($form->isValid()) {
 
-				$settersData['setParent'] = $this->getEntityManager()->getRepository($this->classMap['entityClass'])->findOneBy(array('title' => $data->parent));
-				$settersData['setType'] = $this->getEntityManager()->getRepository($this->classMap['entityRelationClass'])->findOneBy(array('title' => $data->type));
+			$entity = new $this->classMap['entityClass']();
+
+			foreach ($this->settersPostData as $method => $postName) {
+				$entity->{$method}($data->{$postName});
+			}
+
+			if ($data->parent) {
+				$settersData['setParent'] = $this->getEntityManager()->find($this->classMap['entityClass'], $data->parent);
+			}
+			if ($data->type) {
+				$settersData['setType'] = $this->getEntityManager()->find($this->classMap['entityRelationClass'], $data->type);
+			}
+
+			$item = $this->getEntityManager()->getRepository('Reservation\Entity\Item')->findOneBy(array(
+				'title' => $data->title,
+				'type' => $data->type,
+					));
+
+			if (NULL === $item) {
 				foreach ($settersData as $method => $value) {
 					$entity->{$method}($value);
 				}
 
 				$this->getEntityManager()->persist($entity);
 				$this->getEntityManager()->flush();
-
 				$this->flashMessenger()->addMessage('<div class="alert alert-success">Success</div>');
+
+				return $this->redirect()->toRoute('admin/default', array('controller' => 'item'));
+			} else {
+				$this->flashMessenger()->addMessage('<div class="alert alert-error">Already exist</div>');
+				return $this->redirect()->toRoute('admin/default', array('controller' => 'item', 'action' => 'create', 'uid' => $typeUidToView));
 			}
 		}
+//		}
 
 		return new ViewModel(
 						array(
 							'form' => $form,
-							'types' => $this->getEntityManager()->getRepository($this->classMap['entityRelationClass'])->findAllTitleInArray(),
-							'items' => $this->getEntityManager()->getRepository($this->classMap['entityClass'])->findAllTitleInArray(),
+							'type' => $typeEntity,
+							'typeUid' => $typeUidToView,
+							'messages' => $this->flashMessenger()->getMessages(),
 						)
 		);
 	}
@@ -130,7 +207,7 @@ class ItemController extends AbstractActionController {
 			}
 			$form->setData($formData);
 		}
-		
+
 		$form->get('submit')->setValue('Done');
 
 		$request = $this->getRequest();

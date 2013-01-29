@@ -88,6 +88,8 @@ class TypeController extends AbstractActionController {
 				$this->getEntityManager()->flush();
 
 				$this->flashMessenger()->addMessage('<div class="alert alert-success">Success</div>');
+
+				return $this->redirect()->toRoute('admin/default', array('controller' => 'type'));
 			}
 		}
 
@@ -180,7 +182,7 @@ class TypeController extends AbstractActionController {
 						'controller' => 'type',
 						'action' => 'edit',
 						'uid' => $entityUid,
-					)
+					),
 				));
 		$viewModel->setTemplate('reservation/type/type-form');
 

@@ -30,6 +30,21 @@ class ItemRepository extends EntityRepository {
 		return $query->getQuery()->getResult();
 	}
 
+	public function findArrayForSelectOption($typeUid) {
+		$query = $this->getEntityManager()->createQueryBuilder();
+
+		$query->select('i.uid, i.title')
+				->from('Reservation\Entity\Item', 'i')
+				->where('i.type = :type')
+				->setParameter('type', $typeUid);
+
+		$result = array();
+		foreach ($query->getQuery()->getResult() as $each) {
+			$result[$each['uid']] = $each['title'];
+		}
+		return $result;
+	}
+
 }
 
 ?>

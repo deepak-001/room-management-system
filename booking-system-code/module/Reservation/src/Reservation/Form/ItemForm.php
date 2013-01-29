@@ -25,7 +25,7 @@ class ItemForm extends Form {
 
 		$this->add(array(
 			'name' => 'parent',
-			'type' => '\Zend\Form\Element\Text',
+			'type' => '\Zend\Form\Element\Select',
 			'options' => array(
 				'label' => 'Parent',
 				'label_attributes' => array(
@@ -33,22 +33,17 @@ class ItemForm extends Form {
 				),
 			),
 			'attributes' => array(
-				'placeholder' => 'Parent',
-				'id' => 'parent'
+				'id' => 'parent',
+				'class' => 'select'
 			),
 		));
 
 		$this->add(array(
 			'name' => 'type',
-			'type' => '\Zend\Form\Element\Text',
+			'type' => '\Zend\Form\Element\Hidden',
 			'options' => array(
-				'label' => 'Type',
-				'label_attributes' => array(
-					'class' => 'auto'
-				),
 			),
 			'attributes' => array(
-				'placeholder' => 'Type',
 				'id' => 'type',
 			),
 		));

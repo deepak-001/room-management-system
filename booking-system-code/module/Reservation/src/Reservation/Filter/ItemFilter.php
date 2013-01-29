@@ -49,14 +49,14 @@ class ItemFilter implements InputFilterAwareInterface {
 									array('name' => 'StringTrim'),
 								),
 								'validators' => array(
-									array(
-										'name' => 'Db\RecordExists',
-										'options' => array(
-											'table' => 'item',
-											'field' => 'title',
-											'adapter' => $this->adapter,
-										)
-									)
+//									array(
+//										'name' => 'Db\RecordExists',
+//										'options' => array(
+//											'table' => 'item',
+//											'field' => 'title',
+//											'adapter' => $this->adapter,
+//										)
+//									)
 								),
 							)
 					)
@@ -92,14 +92,14 @@ class ItemFilter implements InputFilterAwareInterface {
 									array('name' => 'StringTrim'),
 								),
 								'validators' => array(
-									array(
-										'name' => 'Db\RecordExists',
-										'options' => array(
-											'table' => 'type',
-											'field' => 'title',
-											'adapter' => $this->adapter,
-										)
-									)
+//									array(
+//										'name' => 'Db\RecordExists',
+//										'options' => array(
+//											'table' => 'type',
+//											'field' => 'title',
+//											'adapter' => $this->adapter,
+//										)
+//									)
 								),
 							)
 					)
