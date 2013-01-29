@@ -77,7 +77,7 @@ class ReservationController extends AbstractActionController {
 			return $this->redirect()->toRoute('zfcuser/login');
 		}
 		$reservation = $this->getEntityManager()->getRepository('Reservation\Entity\Reservation')->findBy(array('user' => $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity()), array('lastModifiedTime' => 'DESC'));
-		$this->layout('layout/calendar');
+//		$this->layout('layout/calendar');
 		return new ViewModel(
 						array(
 							'reservation' => $reservation,

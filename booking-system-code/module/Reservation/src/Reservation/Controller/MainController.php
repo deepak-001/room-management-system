@@ -8,6 +8,9 @@ use Zend\View\Model\ViewModel;
 class MainController extends AbstractActionController {
 
 	public function indexAction() {
+		if (!$this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->hasIdentity()) {
+			return $this->redirect()->toRoute('zfcuser/login');
+		}
 		$session = new \Zend\Session\Container('time');
 
 		$items = $this->getEntityManager()->getRepository('Reservation\Entity\Item')->findAll();
