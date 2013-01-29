@@ -59,6 +59,10 @@ class TypeController extends AbstractActionController {
 
 		$form = new $this->classMap['formClass']();
 
+		$form->get('parent')->setValueOptions(
+				$this->getEntityManager()->getRepository('Reservation\Entity\Type')->findArrayForSelectOption()
+		);
+
 		$request = $this->getRequest();
 		if ($request->isPost()) {
 			$filter = new $this->classMap['filterClass']($this->getServiceLocator()->get('db'));
@@ -87,12 +91,16 @@ class TypeController extends AbstractActionController {
 			}
 		}
 
-		return new ViewModel(
-						array(
-							'form' => $form,
-							'types' => $this->getEntityManager()->getRepository($this->classMap['entityClass'])->findAllTitleInArray(),
-						)
-		);
+		$viewModel = new ViewModel(array(
+					'form' => $form,
+					'routeOptions' => array(
+						'controller' => 'type',
+						'action' => 'create'
+					)
+				));
+		$viewModel->setTemplate('reservation/type/type-form');
+
+		return $viewModel;
 	}
 
 	public function editAction() {
@@ -107,18 +115,28 @@ class TypeController extends AbstractActionController {
 			'setLastModifiedUser' => $user,
 		);
 
+		$form->get('parent')->setValueOptions(
+				$this->getEntityManager()->getRepository('Reservation\Entity\Type')->findArrayForSelectOption()
+		);
+
 		if ($entity instanceof $this->classMap['entityClass'] && NULL !== $entity) {
 			$formData = array();
 			foreach ($this->entityDataMatchFormName as $formName => $value) {
 				if ('submit' != $formName) {
 					if ('parent' === $formName) {
-						$formData[$formName] = $entity->{$value}()->getTitle();
+						if (NULL != $entity->{$value}()) {
+							$formData[$formName] = $entity->{$value}()->getTitle();
+						}
 					} else {
 						$formData[$formName] = $entity->{$value}();
 					}
 				}
 			}
 			$form->setData($formData);
+			$form->get('submit')->setValue('Done');
+			if (NULL !== $entity->getParent()) {
+				$form->get('parent')->setValue($entity->getParent()->getUid());
+			}
 		}
 
 		$request = $this->getRequest();
@@ -137,7 +155,7 @@ class TypeController extends AbstractActionController {
 						$entity->{$method}($data->{$postName});
 					}
 
-					$settersData['setParent'] = $this->getEntityManager()->getRepository($this->classMap['entityClass'])->findOneBy(array('title' => $data->parent));
+					$settersData['setParent'] = $this->getEntityManager()->find($this->classMap['entityClass'], $data->parent);
 					foreach ($settersData as $method => $value) {
 						$entity->{$method}($value);
 					}
@@ -156,12 +174,17 @@ class TypeController extends AbstractActionController {
 			}
 		}
 
-		return new ViewModel(
-						array(
-							'form' => $form,
-							'uid' => $entityUid,
-						)
-		);
+		$viewModel = new ViewModel(array(
+					'form' => $form,
+					'routeOptions' => array(
+						'controller' => 'type',
+						'action' => 'edit',
+						'uid' => $entityUid,
+					)
+				));
+		$viewModel->setTemplate('reservation/type/type-form');
+
+		return $viewModel;
 	}
 
 	public function deleteAction() {

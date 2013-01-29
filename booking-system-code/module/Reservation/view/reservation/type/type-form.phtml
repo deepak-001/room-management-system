@@ -1,6 +1,6 @@
 <?php
 $form->prepare();
-$form->setAttribute('action', $this->url('admin/default', array('controller' => 'type', 'action' => 'create')));
+$form->setAttribute('action', $this->url('admin/default', $routeOptions));
 $form->setAttribute('method', 'post');
 ?>
 <?php echo $this->form()->openTag($form) ?>
@@ -12,9 +12,7 @@ $form->setAttribute('method', 'post');
 <?php echo $this->form()->closeTag() ?>
 
 <script type="text/javascript">
-	var availableTags = <?php echo json_encode($types) ?>;
- 
-	jQuery("#parent").autocomplete({
-		source: availableTags
+	jQuery(document).ready(function(){
+		jQuery(".select").chosen({allow_single_deselect: true});
 	});
 </script>

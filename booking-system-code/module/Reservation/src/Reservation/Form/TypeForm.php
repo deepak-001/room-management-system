@@ -25,7 +25,7 @@ class TypeForm extends Form {
 
 		$this->add(array(
 			'name' => 'parent',
-			'type' => '\Zend\Form\Element\Text',
+			'type' => '\Zend\Form\Element\Select',
 			'options' => array(
 				'label' => 'Parent',
 				'label_attributes' => array(
@@ -35,6 +35,7 @@ class TypeForm extends Form {
 			'attributes' => array(
 				'placeholder' => 'Parent',
 				'id' => 'parent',
+				'class' => 'select'
 			),
 		));
 

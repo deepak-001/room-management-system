@@ -35,14 +35,14 @@ class TypeFilter implements InputFilterAwareInterface {
 									array('name' => 'StringTrim'),
 								),
 								'validators' => array(
-									array(
-										'name' => 'Db\NoRecordExists',
-										'options' => array(
-											'table' => 'type',
-											'field' => 'title',
-											'adapter' => $this->adapter,
-										)
-									)
+//									array(
+//										'name' => 'Db\NoRecordExists',
+//										'options' => array(
+//											'table' => 'type',
+//											'field' => 'title',
+//											'adapter' => $this->adapter,
+//										)
+//									)
 								),
 							)
 					)
@@ -57,14 +57,18 @@ class TypeFilter implements InputFilterAwareInterface {
 									array('name' => 'StringTrim'),
 								),
 								'validators' => array(
-									array(
-										'name' => 'Db\RecordExists',
-										'options' => array(
-											'table' => 'type',
-											'field' => 'title',
-											'adapter' => $this->adapter,
-										)
-									)
+//									array(
+//										'name' => 'Db\RecordExists',
+//										'options' => array(
+//											'table' => 'type',
+//											'field' => 'uid',
+//											'adapter' => $this->adapter,
+//										),
+//										'exclude' => array(
+//											'field' => 'type',
+//											'value' => 0
+//										)
+//									)
 								),
 							)
 					)
