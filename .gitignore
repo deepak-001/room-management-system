@@ -5,3 +5,4 @@
 vendor
 *.php~
 local.php
+/booking-system-code/config/autoload/local.php
