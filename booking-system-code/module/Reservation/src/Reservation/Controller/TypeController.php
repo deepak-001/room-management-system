@@ -80,7 +80,7 @@ class TypeController extends AbstractActionController {
 					$entity->{$method}($data->{$postName});
 				}
 
-				$settersData['setParent'] = $this->getEntityManager()->getRepository($this->classMap['entityClass'])->findOneBy(array('title' => $data->parent));
+				$settersData['setParent'] = $this->getEntityManager()->find($this->classMap['entityClass'], $data->parent);
 				foreach ($settersData as $method => $value) {
 					$entity->{$method}($value);
 				}
