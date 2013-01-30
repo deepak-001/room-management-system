@@ -9,7 +9,7 @@ class CalendarController extends AbstractActionController {
 
 	public function datafeedlistAction() {
 
-		$reservation = array();
+		$reservation = array('events' => array());
 		$reservationEntities = $this->getEntityManager()->getRepository('Reservation\Entity\Reservation')->findAll();
 		foreach ($reservationEntities as $entity) {
 			$reservation['events'][] = array(
