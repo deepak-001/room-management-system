@@ -41,7 +41,8 @@ class TypeController extends AbstractActionController {
 		$types = $this->getEntityManager()->getRepository('Reservation\Entity\Type')->findAll();
 		return new ViewModel(
 						array(
-							'types' => $types
+							'types' => $types,
+							'messages' => $this->flashMessenger()->getMessages(),
 						)
 		);
 	}

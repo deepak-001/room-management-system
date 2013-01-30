@@ -254,6 +254,7 @@ class ItemController extends AbstractActionController {
 		$viewModel = new ViewModel(array(
 					'form' => $form,
 					'item' => $entity,
+					'type' => $entity->getType(),
 					'routeOptions' => array('controller' => 'item', 'action' => 'edit', 'uid' => $entityUid),
 					'messages' => $this->flashMessenger()->getMessages(),
 					'types' => $this->getEntityManager()->getRepository($this->classMap['entityRelationClass'])->findAllTitleInArray(),

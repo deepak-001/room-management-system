@@ -2,6 +2,12 @@
 
 <br /><br />
 
+<?php if (count($messages)) : ?>
+	<?php foreach ($messages as $msg) : ?>
+		<?php echo $msg; ?>
+	<?php endforeach; ?>
+<?php endif; ?>
+
 <table class="table table-bordered">
 	<thead>
 		<tr>
