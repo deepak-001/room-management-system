@@ -59,10 +59,13 @@ class ItemRepository extends EntityRepository {
 		}
 
 		$q = $this->getEntityManager()->createQuery(
-				'SELECT r FROM Reservation\Entity\Reservation r'
+				'
+					SELECT r FROM Reservation\Entity\Reservation r
+					WHERE r.
+				'
 				);
 
-		var_dump($q->getResult());
+//		var_dump($q->getResult());
 	}
 
 }
