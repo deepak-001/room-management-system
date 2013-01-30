@@ -86,6 +86,7 @@ class ItemController extends AbstractActionController {
 		$typeEntity = NULL;
 		$parentType = NULL;
 		$typeUidToView = 0;
+		$item = NULL;
 
 		if (NULL !== $typeUid) {
 			$typeUidToView = $typeUid;
@@ -174,6 +175,8 @@ class ItemController extends AbstractActionController {
 						array(
 							'form' => $form,
 							'type' => $typeEntity,
+							'item' => $item,
+							'routeOptions' => array('controller' => 'item', 'action' => 'create'),
 							'typeUid' => $typeUidToView,
 							'messages' => $this->flashMessenger()->getMessages(),
 						)
@@ -250,8 +253,8 @@ class ItemController extends AbstractActionController {
 
 		$viewModel = new ViewModel(array(
 					'form' => $form,
-					'uid' => $entityUid,
 					'item' => $entity,
+					'routeOptions' => array('controller' => 'item', 'action' => 'edit', 'uid' => $entityUid),
 					'messages' => $this->flashMessenger()->getMessages(),
 					'types' => $this->getEntityManager()->getRepository($this->classMap['entityRelationClass'])->findAllTitleInArray(),
 					'items' => $this->getEntityManager()->getRepository($this->classMap['entityClass'])->findAllTitleInArray(),

@@ -3,6 +3,13 @@
 	START RESERVATION
 </a>
 
+<?php
+if ($reservationStarted) {
+	echo '(start : ' . date('d/m/Y H:i', $start);
+	echo ' end : ' . date('d/m/Y H:i', $end) . ')';
+}
+?>
+
 <br /><br />
 
 <table class="table table-bordered">
@@ -11,12 +18,18 @@
 			<th>Title</th>
 			<th>Type</th>
 			<th>Quality</th>
-			<th></th>
+			<?php if ($reservationStarted) { ?>
+				<th></th>
+			<?php } ?>
 		</tr>
 	</thead>
 	<tbody>
 		<?php
 		foreach ($items as $item) {
+			if (!$item->getIsBookable()) {
+				continue;
+			}
+
 			echo '<tr>';
 			echo '<td>' . $item->getTitle() . '</td>';
 			if (NULL !== $item->getType()) {
@@ -41,13 +54,13 @@
 					</div>
 				</td>';
 
-			echo '<td>';
 
-			if ($item->getIsBookable()) {
+			if ($reservationStarted) {
+				echo '<td>';
 				echo '<button value="' . $item->getUid() . '" class="btn bookButton" href="#">Book</button>';
+				echo '</td>';
 			}
-			echo '<a class="btn" href="' . $this->url('admin/default', array('controller' => 'item', 'action' => 'edit', 'uid' => $item->getUid())) . '">Edit</a>';
-			echo '</td>';
+
 
 			echo '</tr>';
 		}
@@ -55,9 +68,12 @@
 	</tbody>
 </table>
 
-<button id="clearItems" class="btn">Clear</button>
-<button class="btn bookButton" value="0">View Items</button>
-<a class="btn" href="<?php echo $this->url('home/default', array('controller' => 'reservation', 'action' => 'done')); ?>">Finish</a>
+<?php if ($reservationStarted) { ?>
+	<button id="clearItems" class="btn">Clear</button>
+	<button class="btn bookButton" value="0">View Items</button>
+	<a class="btn" href="<?php echo $this->url('home/default', array('controller' => 'reservation', 'action' => 'done')); ?>">Finish</a>
+<?php } ?>
+<br /><br />
 
 <div id="items">
 

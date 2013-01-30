@@ -32,6 +32,7 @@
 			onAfterRequestData: cal_afterrequest,
 			onRequestDataError: cal_onerror, 
 			autoload:true,
+			readonly:true,
 			url: DATA_FEED_URL + "",  
 //			url: DATA_FEED_URL + "?method=list",  
 			quickAddUrl: DATA_FEED_URL + "?method=add", 
@@ -206,8 +207,7 @@
 	});
 </script>    
 
-<div>
-
+<div style="margin-top: 20px">
 	<div id="calhead" style="padding-left:1px;padding-right:1px;">          
 		<div class="cHead"><div class="ftitle">My Calendar</div>
             <div id="loadingpannel" class="ptogtitle loadicon" style="display: none;">Loading data...</div>

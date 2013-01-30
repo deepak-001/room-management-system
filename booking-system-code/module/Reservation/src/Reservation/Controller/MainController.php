@@ -12,12 +12,21 @@ class MainController extends AbstractActionController {
 			return $this->redirect()->toRoute('zfcuser/login');
 		}
 		$session = new \Zend\Session\Container('time');
+		$reservationStarted = FALSE;
+		if (NULL !== $session->start && NULL !== $session->end) {
+			$reservationStarted = TRUE;
+		}
 
-		$items = $this->getEntityManager()->getRepository('Reservation\Entity\Item')->findAll();
+		$items = $this->getEntityManager()->getRepository('Reservation\Entity\Item')->findBy(array('isBookable' => 1));
+		
+		$itemsAvailble = $this->getEntityManager()->getRepository('Reservation\Entity\Item')->findBusyItemByTime($session->start, $session->end);
 
 		return new ViewModel(
 						array(
 							'items' => $items,
+							'reservationStarted' => $reservationStarted,
+							'start' => $session->start,
+							'end' => $session->end,
 						)
 		);
 	}

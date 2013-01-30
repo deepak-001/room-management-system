@@ -45,6 +45,26 @@ class ItemRepository extends EntityRepository {
 		return $result;
 	}
 
+	public function findBusyItemByTime($start, $end) {
+		$query = $this->getEntityManager()->createQueryBuilder();
+		$sub = $this->getEntityManager()->createQueryBuilder();
+
+		$sub->select('i.uid')
+				->from('Reservation\Entity\Item', 'i')
+				->where('i.isBookable = 1')->getDQL();
+
+		$items = array();
+		foreach ($sub->getQuery()->getResult() as $item) {
+			$items[$item['uid']] = $item['uid'];
+		}
+
+		$q = $this->getEntityManager()->createQuery(
+				'SELECT r FROM Reservation\Entity\Reservation r'
+				);
+
+		var_dump($q->getResult());
+	}
+
 }
 
 ?>
