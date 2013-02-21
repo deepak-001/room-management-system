@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE IF NOT EXISTS `user_role` (
   `role_id` varchar(255)  ,
   `default` tinyint(1)  ,

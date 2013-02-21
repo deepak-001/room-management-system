@@ -17,6 +17,7 @@ if ($reservationStarted) {
 		<tr>
 			<th>Title</th>
 			<th>Type</th>
+			<th>Quality</th>
 			<?php if ($reservationStarted) { ?>
 				<th></th>
 			<?php } ?>
@@ -36,6 +37,23 @@ if ($reservationStarted) {
 			} else {
 				echo '<td></td>';
 			}
+
+			$barType = 'bar-success';
+
+			if ($item->getQuality() > 70) {
+				$barType = 'bar-success';
+			} else if ($item->getQuality() > 40) {
+				$barType = 'bar-warning';
+			} else if ($item->getQuality() > 0) {
+				$barType = 'bar-danger';
+			}
+
+			echo '<td>
+					<div class="progress progress-striped">
+						<div class="bar ' . $barType . '" style="width: ' . $item->getQuality() . '%;"></div>
+					</div>
+				</td>';
+
 
 			if ($reservationStarted) {
 				echo '<td>';

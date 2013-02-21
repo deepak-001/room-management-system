@@ -72,8 +72,8 @@ return array(
 
         /* Currently, only controller and route guards exist
          */
-		'guards-no' => array(
-//        'guards' => array(
+//		'guards-no' => array(
+        'guards' => array(
             /* If this guard is specified here (i.e. it is enabled), it will block
              * access to all controllers and actions unless they are specified here.
              * You may omit the 'action' index to allow access to the entire controller
@@ -82,8 +82,15 @@ return array(
                 array('controller' => 'index', 'action' => 'index', 'roles' => array('guest')),
                 array('controller' => 'index', 'action' => 'stuff', 'roles' => array()),
                 array('controller' => 'zfcuser', 'roles' => array()),
-                array('controller' => 'zfcuseradmin' , 'action'=>'list', 'roles' => array('teacher')),
-                array('controller' => 'index' , 'action'=>'showRooms', 'roles' => array('student')),
+                array('controller' => 'zfcuseradmin' , 'roles' => array('teacher')),
+				
+				array('controller' => 'main' , 'action'=>'index', 'roles' => array('guest','student','teacher')),
+				array('controller' => 'reservation', 'roles' => array('student','teacher')),
+				array('controller' => 'calendar', 'roles' => array('student','teacher')),
+				
+				array('controller' => 'item', 'roles' => array('teacher')),
+				array('controller' => 'type', 'roles' => array('teacher')),
+				
                 // Below is the default index action used by the [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
                 // array('controller' => 'Application\Controller\Index', 'roles' => array('guest', 'user')),
             ),
