@@ -2,20 +2,11 @@
 
 // config/autoload/global.php:
 return array(
-	'service_manager' => array(
-		'factories' => array(
-			'Zend\Db\Adapter\Adapter'
-			=> 'Zend\Db\Adapter\AdapterServiceFactory',
-		),
-		'aliases' => array(
-			'db' => 'Zend\Db\Adapter\Adapter',
-		),
-	),
 	'db' => array(
 		'driver' => 'Pdo',
-		'dsn' => 'mysql:dbname=room-management-system;host=localhost',
+		'dsn' => 'mysql:dbname=resource_ms;host=localhost',
 		'username' => 'root',
-		'password' => '',
+		'password' => 'root',
 		'driver_options' => array(
 			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
 		),
@@ -27,9 +18,9 @@ return array(
 				'params' => array(
 					'host' => 'localhost',
 					'port' => '3306',
-					'dbname' => 'room-management-system',
+					'dbname' => 'resource_ms',
 					'user' => 'root',
-					'password' => '',
+					'password' => 'root',
 				)
 			)
 		)
